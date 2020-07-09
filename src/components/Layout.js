@@ -1,16 +1,19 @@
-import React, { Fragment } from 'react';
-import { Helmet } from 'react-helmet';
-import { graphql } from 'gatsby';
-import { MDXProvider } from '@mdx-js/react';
-import { createGlobalStyle } from 'styled-components';
+import React, { Fragment } from "react";
+import { Helmet } from "react-helmet";
+import { graphql } from "gatsby";
+import { MDXProvider } from "@mdx-js/react";
+import { Global, css } from "@emotion/core";
+import styled from "@emotion/styled";
+import Header from "components/Header";
+import Footer from "components/Footer";
 
-import 'prismjs/themes/prism-okaidia.css';
+import "prismjs/themes/prism-okaidia.css";
 
-import Link from './Link';
-import { MDXLayoutComponents, MDXGlobalComponents } from './mdx';
+import { MDXLayoutComponents, MDXGlobalComponents } from "./mdx";
 
-const GlobalStyle = createGlobalStyle`
-  html, body {
+const GlobalStyle = css`
+  html,
+  body {
     margin: 0;
     padding: 0;
   }
@@ -33,13 +36,36 @@ const GlobalStyle = createGlobalStyle`
     padding-right: 1em;
     padding-left: 1em;
   }
+
+  h1 {
+    font-family: Phosphate;
+    color: #0443ac;
+  }
+  input {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
+    font-family: "Lato Regular";
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(211, 211, 211);
+    border-image: initial;
+    padding: 5px 10px;
+  }
 `;
 
-const NAVIGATION = [
-  { to: '/', label: 'About' },
-  { to: '/blog', label: 'Blog' },
-  { to: 'https://roadtoreact.com', label: 'Courses' },
-];
+const MainContainer = styled.main`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-areas: "left content right";
+  z-index: 5;
+`;
+
+const Content = styled.div`
+  grid-area: content;
+  background: white;
+  border-radius: 10px;
+  padding: 30px 10px;
+`;
 
 export default ({ site, frontmatter = {}, children }) => {
   const {
@@ -53,7 +79,7 @@ export default ({ site, frontmatter = {}, children }) => {
     description: frontmatterDescription,
   } = frontmatter;
 
-  const keywords = (frontmatterKeywords || siteKeywords).join(', ');
+  const keywords = (frontmatterKeywords || siteKeywords).join(", ");
   const description = frontmatterDescription || siteDescription;
 
   return (
@@ -61,33 +87,30 @@ export default ({ site, frontmatter = {}, children }) => {
       <Helmet
         title={title}
         meta={[
-          { name: 'description', content: description },
-          { name: 'keywords', content: keywords },
+          { name: "description", content: description },
+          { name: "keywords", content: keywords },
         ]}
       >
         <html lang="en" />
+        <noscript>This site runs best with JavaScript enabled.</noscript>
       </Helmet>
 
-      <GlobalStyle />
+      <Global styles={GlobalStyle} />
 
-      <MDXProvider
-        components={{
-          ...MDXLayoutComponents,
-          ...MDXGlobalComponents,
-        }}
-      >
-        <Fragment>
-          <ul>
-            {NAVIGATION.map(navigation => (
-              <li key={navigation.label}>
-                <Link to={navigation.to}>{navigation.label}</Link>
-              </li>
-            ))}
-          </ul>
-
-          {children}
-        </Fragment>
-      </MDXProvider>
+      <>
+        <Header title={title} />
+        <MDXProvider
+          components={{
+            ...MDXLayoutComponents,
+            ...MDXGlobalComponents,
+          }}
+        >
+          <MainContainer>
+            <Content>{children}</Content>
+          </MainContainer>
+          <Footer data={site.siteMetadata} />
+        </MDXProvider>
+      </>
     </Fragment>
   );
 };
@@ -99,6 +122,10 @@ export const pageQuery = graphql`
       description
       author
       keywords
+      twitter
+      github
+      linkedin
+      rss
     }
   }
 `;

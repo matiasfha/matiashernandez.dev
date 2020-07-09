@@ -1,0 +1,23 @@
+{
+  "projectName": "matiashernandez.dev",
+  "projectOwner": "matiasfha",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributorsPerLine": 7,
+  "contributors": [
+    {
+      "login": "rwieruch",
+      "name": "Robin Wieruch",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/2479967?v=4",
+      "profile": "https://www.robinwieruch.de",
+      "contributions": [
+        "code"
+      ]
+    },
+  ]
+}
