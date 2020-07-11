@@ -1,4 +1,9 @@
 const path = require("path");
+require("dotenv").config({
+  path: `.env`,
+});
+
+const BUZZSPROUT_TOKEN = process.env.BUZZSPROUT_TOKEN;
 
 module.exports = {
   pathPrefix: "/",
@@ -30,6 +35,22 @@ module.exports = {
       options: {
         path: `${__dirname}/content/blog`,
         name: "blog",
+      },
+    },
+    {
+      resolve: `gatsby-source-buzzsprout-api`,
+      options: {
+        name: "ControlRemoto",
+        token: BUZZSPROUT_TOKEN,
+        podcastId: "1057351",
+      },
+    },
+    {
+      resolve: `gatsby-source-buzzsprout-api`,
+      options: {
+        name: "CafeConTech",
+        token: BUZZSPROUT_TOKEN,
+        podcastId: "1081172",
       },
     },
     {
@@ -86,5 +107,11 @@ module.exports = {
     "gatsby-plugin-emotion",
     "gatsby-plugin-catch-links",
     "gatsby-plugin-react-helmet",
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/lib/typography`,
+      },
+    },
   ],
 };

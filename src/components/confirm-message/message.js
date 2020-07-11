@@ -26,6 +26,8 @@ export default function Message({
           className={css`
             color: rgba(0, 0, 0, 0.7);
             transform: scale(0.85);
+            color: black;
+            font-family: Lato Regular;
             span:hover {
               opacity: 1;
               color: rgba(0, 0, 0, 1);
@@ -49,7 +51,6 @@ export default function Message({
 export const Center = styled.div`
   width: 100vw;
   max-width: 100% !important;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;

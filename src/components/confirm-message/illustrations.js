@@ -424,7 +424,7 @@ from, 20% {
 opacity: 0.4;
 }
 80% {
-    fill: white;
+    fill: light gray;
     opacity: 1;
 }
 to, 100% {

@@ -18,24 +18,26 @@ function PostSubmissionMessage() {
     <div
       css={css`
         h2 {
-          color: white !important;
+          color: black;
+          font-family: Lato Bold;
         }
       `}
     >
       <Message
-        illustration={PleaseConfirmIllustration}
-        title="Great, one last thing..."
-        body="I just sent you an email with the confirmation link. 
-          **Please check your inbox!**"
+        illustration={<PleaseConfirmIllustration />}
+        title="Genial. Un ultimo paso"
+        body="Te he enviado un email con un enlace de confirmacion. 
+          **Porfavor revisa tu buzon de entrada!**"
       />
     </div>
   );
 }
 
 const SubscribeFormWrapper = styled.div`
-  color: white;
-  maxwidth: 350px;
-  padding: 40px 40px 40px 20px;
+  color: black;
+  width: 100%;
+  max-width: 350px;
+  padding: 40px;
   background: white;
   border-radius: 5px;
 `;
@@ -125,10 +127,10 @@ function useFetch({ url, body }) {
   return state;
 }
 
-function Subscribe({ style, tags = [], header = "Join the Newsletter" }) {
+function Subscribe({ style, tags = [] }) {
   const [values, setValues] = React.useState();
   const { pending, response, error } = useFetch({
-    url: `https://app.convertkit.com/forms/827139/subscriptions`,
+    url: `https://app.convertkit.com/forms/1517272/subscriptions`,
     body: values,
   });
 
@@ -212,7 +214,7 @@ function Subscribe({ style, tags = [], header = "Join the Newsletter" }) {
               />
               <Button data-element="submit" type="submit">
                 {!pending && "Unete"}
-                {pending && "Enviano..."}
+                {pending && "Enviando..."}
               </Button>
             </StyledFormikForm>
           )}

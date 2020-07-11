@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import Link from "components/Link";
 import Logo from "../../assets/logo.png";
 import Photo from "../../assets/photo.png";
+import { bpMaxSM, bpTabletOnly } from "lib/breakpoints";
 
 const HeroContainer = styled.section`
   margin: 0 auto;
@@ -19,7 +20,8 @@ const HeroContainer = styled.section`
   align-items: start;
   grid-template-columns: 2fr 1fr 1fr;
   grid-template-areas: "copy empty image";
-  padding-top: 2.5rem;
+  padding-top: 0rem;
+  grid-template-rows: 156px;
 `;
 
 const Copy = styled.h1`
@@ -34,8 +36,15 @@ const Copy = styled.h1`
 
 const Image = styled.img`
   grid-area: image;
-  max-width: 75%;
+  max-width: 100%;
   justify-self: end;
+  align-self: end;
+  ${bpTabletOnly} {
+    max-width: 150%;
+  }
+  ${bpMaxSM} {
+    display: none;
+  }
 `;
 
 const HeaderContainer = styled.header`
@@ -44,7 +53,7 @@ const HeaderContainer = styled.header`
   margin: 0;
 
   display: grid;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "left hero right";
@@ -73,7 +82,7 @@ const Container = styled.div`
   grid-area: hero;
   display: grid;
   grid-template-rows: 100px 1fr;
-  grid-row-gap: 30px;
+  grid-row-gap: 5rem;
   justify-content: space-between;
   align-items: center;
 `;

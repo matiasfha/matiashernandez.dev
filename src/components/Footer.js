@@ -13,6 +13,7 @@ const Container = styled.footer`
   grid-template-areas: "left content right";
   height: 20rem;
   padding-top: 5rem;
+  padding-bottom: 5rem;
   background: rgb(4, 67, 172);
   background: linear-gradient(
     90deg,

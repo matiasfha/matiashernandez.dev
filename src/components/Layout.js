@@ -6,6 +6,8 @@ import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import { bpMaxSM } from "lib/breakpoints";
+import { fonts } from "lib/typography";
 
 import "prismjs/themes/prism-okaidia.css";
 
@@ -36,14 +38,27 @@ const GlobalStyle = css`
     padding-right: 1em;
     padding-left: 1em;
   }
-
+  body {
+    background: #eeefff;
+  }
+  a {
+    text-decoration: none;
+  }
+  ${bpMaxSM} {
+    h1 {
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 24px;
+    }
+  }
   h1 {
-    font-family: Phosphate;
+    font-family: ${fonts.titles};
     color: #0443ac;
   }
   input {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
-    font-family: "Lato Regular";
+    font-family: ${fonts.regular};
     border-radius: 4px;
     border-width: 1px;
     border-style: solid;
@@ -58,16 +73,20 @@ const MainContainer = styled.main`
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "left content right";
   z-index: 5;
+  min-height: 50rem;
+  position: relative;
 `;
 
 const Content = styled.div`
   grid-area: content;
   background: white;
   border-radius: 10px;
-  padding: 30px 10px;
+  padding: 30px 30px;
+  position: absolute;
+  top: -30px;
 `;
 
-export default ({ site, frontmatter = {}, children }) => {
+const Layout = ({ site, frontmatter = {}, children }) => {
   const {
     title,
     description: siteDescription,
@@ -114,6 +133,8 @@ export default ({ site, frontmatter = {}, children }) => {
     </Fragment>
   );
 };
+
+export default Layout;
 
 export const pageQuery = graphql`
   fragment site on Site {
