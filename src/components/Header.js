@@ -92,7 +92,7 @@ const Nav = styled.nav`
   display: grid;
   grid-template-columns: 1fr 2fr;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 `;
 
 const HeaderLink = styled(Link)`
