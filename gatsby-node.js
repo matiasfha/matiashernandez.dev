@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require("path");
+const fetch = require("node-fetch");
 
 const PAGINATION_OFFSET = 2;
 
@@ -12,7 +13,7 @@ const pluckCategories = (edges) =>
       });
 
       return acc;
-    }, {}),
+    }, {})
   );
 
 const groupByCategory = (edges) =>
@@ -36,7 +37,7 @@ const createCategoryPages = (createPage, edges) => {
       createPage,
       posts[category],
       `/categories/${category}`,
-      { categories, activeCategory: category },
+      { categories, activeCategory: category }
     );
   });
 };
@@ -61,15 +62,10 @@ const createPosts = (createPage, edges) => {
 const createBlog = (createPage, edges) => {
   const categories = pluckCategories(edges);
 
-  createPaginatedPages(createPage, edges, '/blog', { categories });
+  createPaginatedPages(createPage, edges, "/blog", { categories });
 };
 
-const createPaginatedPages = (
-  createPage,
-  edges,
-  pathPrefix,
-  context,
-) => {
+const createPaginatedPages = (createPage, edges, pathPrefix, context) => {
   const pages = edges.reduce((acc, value, index) => {
     const pageIndex = Math.floor(index / PAGINATION_OFFSET);
 
@@ -138,9 +134,9 @@ exports.createPages = ({ actions, graphql }) =>
 exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
-      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      modules: [path.resolve(__dirname, "src"), "node_modules"],
       alias: {
-        $components: path.resolve(__dirname, 'src/components'),
+        $components: path.resolve(__dirname, "src/components"),
       },
     },
   });
@@ -153,51 +149,63 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     const parent = getNode(node.parent);
 
     createNodeField({
-      name: 'id',
+      name: "id",
       node,
       value: node.id,
     });
 
     createNodeField({
-      name: 'title',
+      name: "title",
       node,
       value: node.frontmatter.title,
     });
 
     createNodeField({
-      name: 'description',
+      name: "description",
       node,
       value: node.frontmatter.description,
     });
 
     createNodeField({
-      name: 'slug',
+      name: "slug",
       node,
       value: node.frontmatter.slug,
     });
 
     createNodeField({
-      name: 'date',
+      name: "date",
       node,
-      value: node.frontmatter.date || '',
+      value: node.frontmatter.date || "",
     });
 
     createNodeField({
-      name: 'banner',
+      name: "banner",
       node,
       banner: node.frontmatter.banner,
     });
 
     createNodeField({
-      name: 'categories',
+      name: "categories",
       node,
       value: node.frontmatter.categories || [],
     });
 
     createNodeField({
-      name: 'keywords',
+      name: "keywords",
       node,
       value: node.frontmatter.keywords || [],
     });
   }
+};
+
+exports.sourceNodes = async ({
+  actions,
+  createContentDigest,
+  createNodeId,
+}) => {
+  const response = await fetch(
+    "https://egghead.io/api/v1/instructors/matias-francisco-hernandez-arellano"
+  );
+  const data = await response.json();
+  console.log(data);
 };

@@ -4,58 +4,23 @@ import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
-import Header from "components/Header";
-import Footer from "components/Footer";
-import { bpMaxSM } from "lib/breakpoints";
-import { fonts } from "lib/typography";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { fonts } from "@/lib/typography";
+import reset from "@/lib/reset";
 
 import "prismjs/themes/prism-okaidia.css";
 
 import { MDXLayoutComponents, MDXGlobalComponents } from "./mdx";
 
 const GlobalStyle = css`
+  ${reset};
   html,
   body {
     margin: 0;
     padding: 0;
   }
 
-  ${() => {
-    /* Override PrismJS Defaults */ return null;
-  }}
-
-  pre {
-    background-color: #2f1e2e !important;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-
-  .gatsby-highlight-code-line {
-    background-color: #4f424c;
-    display: block;
-    margin-right: -1em;
-    margin-left: -1em;
-    padding-right: 1em;
-    padding-left: 1em;
-  }
-  body {
-    background: #eeefff;
-  }
-  a {
-    text-decoration: none;
-  }
-  ${bpMaxSM} {
-    h1 {
-      font-size: 30px;
-    }
-    h2 {
-      font-size: 24px;
-    }
-  }
-  h1 {
-    font-family: ${fonts.titles};
-    color: #0443ac;
-  }
   input {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 3px;
     font-family: ${fonts.regular};
@@ -74,16 +39,13 @@ const MainContainer = styled.main`
   grid-template-areas: "left content right";
   z-index: 5;
   min-height: 50rem;
-  position: relative;
 `;
 
 const Content = styled.div`
   grid-area: content;
-  background: white;
   border-radius: 10px;
-  padding: 30px 30px;
-  position: absolute;
-  top: -30px;
+  padding: 40px 0px;
+  width: 100%;
 `;
 
 const Layout = ({ site, frontmatter = {}, children }) => {

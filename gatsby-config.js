@@ -76,6 +76,7 @@ module.exports = {
         ],
       },
     },
+    "gatsby-remark-reading-time",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     "gatsby-plugin-styled-components",
@@ -96,7 +97,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-root-import",
       options: {
-        src: path.join(__dirname, "src"),
+        "@": path.join(__dirname, "src"),
         assets: path.join(__dirname, "assets"),
       },
     },

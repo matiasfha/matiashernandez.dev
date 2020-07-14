@@ -3,7 +3,13 @@
     "kentcdodds",
     "kentcdodds/react",
     "kentcdodds/jsx-a11y",
-    "kentcdodds/jest"
+    "kentcdodds/jest",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
   ],
   "rules": {
     "import/no-unresolved": "off",

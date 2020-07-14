@@ -3,7 +3,8 @@ import styled from "@emotion/styled";
 import Link from "components/Link";
 import Logo from "../../assets/logo.png";
 import Photo from "../../assets/photo.png";
-import { bpMaxSM, bpTabletOnly } from "lib/breakpoints";
+import { bpMaxSM, bpTabletOnly } from "@/lib/breakpoints";
+import { fonts } from "@/lib/typography";
 
 const HeroContainer = styled.section`
   margin: 0 auto;
@@ -31,7 +32,8 @@ const Copy = styled.h1`
   position: relative;
   line-height: 1.5;
   margin: 0;
-  font-family: Lato, sans-serif;
+  font-weight: normal;
+  font-family: ${fonts.semibold};
 `;
 
 const Image = styled.img`
@@ -49,7 +51,7 @@ const Image = styled.img`
 
 const HeaderContainer = styled.header`
   width: 100%;
-  height: 20rem;
+  height: 17.7rem;
   margin: 0;
 
   display: grid;
@@ -75,7 +77,7 @@ const HeaderContainer = styled.header`
     #3464cc
   );
   color: white;
-  font-family: Lato, sans-serif;
+  font-family: ${fonts.regular};
 `;
 
 const Container = styled.div`
@@ -98,11 +100,12 @@ const Nav = styled.nav`
 const HeaderLink = styled(Link)`
   text-decoration: none;
   color: white;
-  font-family: Phosphate;
+  font-family: ${fonts.titles};
   font-size: 14px;
   font-weight: bold;
   img {
     width: 70px;
+    margin: 0;
   }
 `;
 
@@ -111,6 +114,8 @@ const NavLink = styled(HeaderLink)`
   border-radius: 3px;
   background: transparent;
   font-weight: normal;
+  font-family: ${fonts.regular};
+  font-size: 16px;
   & + &: {
     margin-left: 10px;
   }

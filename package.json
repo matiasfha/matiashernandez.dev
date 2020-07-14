@@ -19,6 +19,7 @@
     "gatsby-remark-copy-linked-files": "^2.3.1",
     "gatsby-remark-images": "^3.3.0",
     "gatsby-remark-prismjs": "^3.5.0",
+    "gatsby-remark-reading-time": "1.1.0",
     "gatsby-source-buzzsprout-api": "1.0.1",
     "gatsby-source-filesystem": "^2.3.0",
     "gatsby-source-rss-feed": "github:matiasfha/gatsby-source-rss-feed#semver:1.2.1",
@@ -34,6 +35,8 @@
   "devDependencies": {
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
+    "@typescript-eslint/eslint-plugin": "3.6.1",
+    "@typescript-eslint/parser": "3.6.1",
     "eslint-config-kentcdodds": "14.14.1",
     "eslint-plugin-cypress": "2.11.1",
     "eslint-plugin-jest": "23.18.0",
@@ -51,6 +54,7 @@
     "lint-staged": "10.2.11",
     "prettier": "2.0.5",
     "react-markdown": "4.3.1",
+    "typescript": "3.9.6",
     "yup": "0.29.1"
   },
   "keywords": [

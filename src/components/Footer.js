@@ -5,15 +5,13 @@ import Link from "components/Link";
 import Subscribe from "components/Subscribe";
 
 const Container = styled.footer`
-  margin-top: -20px;
   display: grid;
   justify-content: space-between;
   align-items: start;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "left content right";
-  height: 20rem;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  height: 26rem;
+  padding-top: 2rem;
   background: rgb(4, 67, 172);
   background: linear-gradient(
     90deg,
