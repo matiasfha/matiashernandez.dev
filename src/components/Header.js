@@ -27,7 +27,7 @@ const HeroContainer = styled.section`
 
 const Copy = styled.h1`
   grid-area: copy;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
   position: relative;
   line-height: 1.5;
@@ -38,7 +38,7 @@ const Copy = styled.h1`
 
 const Image = styled.img`
   grid-area: image;
-  max-width: 100%;
+  max-width: 130%;
   justify-self: end;
   align-self: end;
   ${bpTabletOnly} {

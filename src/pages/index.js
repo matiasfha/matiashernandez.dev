@@ -115,13 +115,9 @@ const EggheadContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: 2rem;
   min-height: 500px;
   height: 500px;
-  h3 {
-    font-family: ${fonts.bold};
-    color: #0443ac;
-  }
 `;
 
 const EggheadColumn = styled.div`
@@ -137,7 +133,7 @@ const EggheadColumn = styled.div`
 
 const Eggheadtitle = styled.h3`
   font-family: Lato Black;
-  color: #0443ac;
+  color: #333;
   grid-area: title;
 `;
 

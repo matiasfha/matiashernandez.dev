@@ -9,11 +9,11 @@ const PodcastColumn = styled.div`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px 0px;
   border-radius: 5px;
   h2 {
-    color: #0443ac;
+    color: #333;
     font-family: ${fonts.titles};
   }
   h4 {
-    color: #3464cc;
+    color: #333;
     font-family: ${fonts.bold};
   }
 `;
@@ -26,6 +26,10 @@ const PodcastEpisode = styled(Link)`
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem 0 2rem;
+  border-bottom: 1px solid #dfdfdf;
+  &:last-child {
+    border-bottom: none;
+  }
   h4 {
     flex: 0.8;
     font-family: ${fonts.regular};
@@ -39,7 +43,7 @@ const PodcastEpisode = styled(Link)`
 
 const PodcastImg = styled(Img)`
   border-radius: 60px;
-  width: 100%;
+  width: 130%;
 `;
 
 const PodcastHeader = styled.div<{ background: string }>`
@@ -61,8 +65,8 @@ const PodcastContent = styled.div`
 const PodcastInfo = styled.div`
   grid-area: header;
   display: grid;
-  grid-template-columns: 120px 1fr;
-  grid-gap: 10px;
+  grid-template-columns: 140px 1fr;
+  grid-gap: 20px;
   img {
     background: #ffffff;
     border-radius: 10px;
@@ -71,7 +75,7 @@ const PodcastInfo = styled.div`
     align-self: start;
   }
   h2 {
-    text-align: center;
+    text-align: left;
   }
   padding: 0 30px;
   margin-top: -3rem;
@@ -82,7 +86,7 @@ const PodcastEpisodes = styled.div`
   grid-area: content;
   display: grid;
   grid-gap: 10px;
-  grid-template-rows: 0.5fr;
+  grid-template-rows: repeat(minmax(100px, 1fr));
 `;
 
 type PodcastCardProps = {
