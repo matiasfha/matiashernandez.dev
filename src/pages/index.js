@@ -189,7 +189,7 @@ export const pageQuery = graphql`
         audio_url
         remoteImage {
           childImageSharp {
-            fluid(maxWidth: 60, quality: 70) {
+            fluid(maxWidth: 120, quality: 70) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }
@@ -209,7 +209,7 @@ export const pageQuery = graphql`
         audio_url
         remoteImage {
           childImageSharp {
-            fluid(maxWidth: 60, quality: 70) {
+            fluid(maxWidth: 120, quality: 70) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }

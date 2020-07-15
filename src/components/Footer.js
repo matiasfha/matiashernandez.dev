@@ -50,6 +50,7 @@ const Social = styled.div`
   grid-area: social;
   ${bpMaxSM} {
     margin-bottom: 1rem;
+    margin-top: 1rem;
   }
 `;
 

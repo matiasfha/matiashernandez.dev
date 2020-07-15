@@ -38,11 +38,14 @@ const Copy = styled.h1`
   margin: 0;
   font-weight: normal;
   font-family: ${fonts.semibold};
+  align-self: start;
   ${bpTabletOnly} {
     font-size: 18px;
+    align-self: start;
   }
   ${bpMaxSM} {
     font-size: 16px;
+    align-self: start;
   }
 `;
 
@@ -173,8 +176,9 @@ const Header = ({ title }) => {
         </Nav>
         <HeroContainer>
           <Copy>
-            Hola! Soy Matias. Te ayudo a crear mejor software o a transformar tu
-            idea en realidad.
+            Hola! Soy Matias.
+            <br />
+            Te ayudo a crear mejor software o a transformar tu idea en realidad.
           </Copy>
           <Image src={Photo} alt="Matias Hernandez" />
         </HeroContainer>

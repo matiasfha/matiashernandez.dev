@@ -40,6 +40,10 @@ const MainContainer = styled.main`
   grid-template-areas: "left content right";
   z-index: 5;
   min-height: 50rem;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+  }
 `;
 
 const Content = styled.div`

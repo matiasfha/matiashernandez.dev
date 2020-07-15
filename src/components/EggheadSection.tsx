@@ -8,10 +8,12 @@ const Container = styled.div`
   grid-gap: 3rem;
   position: relative;
   padding-bottom: 2rem;
-  min-height: 800px;
-  height: 800px;
+  min-height: 400px;
+  height: 400px;
   ${bpMaxSM} {
     grid-template-columns: 1fr;
+    min-height: 700px;
+    height: 700px;
   }
 `;
 
@@ -27,7 +29,7 @@ const Column = styled.div`
 `;
 
 const Title = styled.a`
-  font-family: Lato Black;
+  font-family: Lato Bold;
   color: #333;
   grid-area: title;
   font-size: 1.3rem;
@@ -46,6 +48,9 @@ const Iframe = styled.iframe`
   left: 0px;
   border: none;
   position: absolute;
+  ${bpMaxSM} {
+    height: 220px;
+  }
 `;
 
 const EggheadSection = () => {

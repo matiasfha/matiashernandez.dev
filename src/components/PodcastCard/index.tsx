@@ -3,11 +3,14 @@ import styled from "@emotion/styled";
 import Img from "gatsby-image";
 import { fonts } from "@/lib/typography";
 import Link from "@/components/Link";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const PodcastColumn = styled.div`
   background: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 3px 0px;
-  border-radius: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 350px;
   h2 {
     color: #333;
     font-family: ${fonts.titles};
@@ -25,8 +28,9 @@ const PodcastEpisode = styled.a`
   grid-template-columns: 1fr 150px;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem 0 2rem;
+  padding: 1rem 1rem 0 2rem;
   border-bottom: 1px solid #dfdfdf;
+  height: 130px;
   &:last-child {
     border-bottom: none;
   }
@@ -34,16 +38,19 @@ const PodcastEpisode = styled.a`
     flex: 0.8;
     font-family: ${fonts.regular};
     font-weight: 400;
-    color: rgb(45, 93, 185);
+    color: #333;
   }
   & > div {
     justify-self: center;
   }
+  ${bpMaxSM} {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const PodcastImg = styled(Img)`
-  border-radius: 60px;
-  width: 130%;
+  border-radius: 90px;
+  width: 90px;
 `;
 
 const PodcastHeader = styled.div<{ background: string }>`
@@ -86,7 +93,7 @@ const PodcastEpisodes = styled.div`
   grid-area: content;
   display: grid;
   grid-gap: 10px;
-  grid-template-rows: repeat(minmax(100px, 1fr));
+  grid-template-rows: 100px 1fr;
 `;
 
 type PodcastCardProps = {
