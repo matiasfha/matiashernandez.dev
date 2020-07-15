@@ -7,6 +7,7 @@ import styled from "@emotion/styled";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { fonts } from "@/lib/typography";
+import { bpMaxSM } from "@/lib/breakpoints";
 import reset from "@/lib/reset";
 
 import "prismjs/themes/prism-okaidia.css";
@@ -46,6 +47,9 @@ const Content = styled.div`
   border-radius: 10px;
   padding: 40px 0px;
   width: 100%;
+  ${bpMaxSM} {
+    padding: 40px 1rem;
+  }
 `;
 
 const Layout = ({ site, frontmatter = {}, children }) => {

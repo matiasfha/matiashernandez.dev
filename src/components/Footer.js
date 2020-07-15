@@ -3,6 +3,7 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Link from "components/Link";
 import Subscribe from "components/Subscribe";
+import { bpMaxSM, bpTabletOnly } from "@/lib/breakpoints";
 
 const Container = styled.footer`
   display: grid;
@@ -20,6 +21,11 @@ const Container = styled.footer`
     rgba(52, 100, 204, 1) 100%
   );
   color: white;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+    padding: 0 1rem;
+  }
 `;
 
 const FooterContent = styled.div`
@@ -27,6 +33,14 @@ const FooterContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "form empty social";
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+    grid-tempalte-rows: 120px 1fr;
+    grid-template-areas:
+      "social"
+      "form";
+    grid-grap: 2rem;
+  }
 `;
 
 const Social = styled.div`
@@ -34,10 +48,17 @@ const Social = styled.div`
   flex-direction: row;
   justify-content: space-between;
   grid-area: social;
+  ${bpMaxSM} {
+    margin-bottom: 1rem;
+  }
 `;
 
 const Form = styled.div`
   grid-area: form;
+  max-width: 350px;
+  ${bpMaxSM} {
+    max-width: 100%;
+  }
 `;
 
 const RSS = ({ color = `rgba(255,255,255,0.7)`, url }) => (

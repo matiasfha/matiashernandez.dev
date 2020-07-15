@@ -4,6 +4,7 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Markdown from "react-markdown";
 import { fonts } from "@/lib/typography";
+import { bpMaxSM } from "@/lib/breakpoints";
 import Layout from "@/components/Layout";
 import Link from "@/components/Link";
 import PodcastCard from "@/components/PodcastCard";
@@ -18,12 +19,18 @@ const PodcastsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-gap: 3rem;
   padding-bottom: 2rem;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+  }
 `;
 const PostsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px;
   padding: 2rem 0;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PostCard = styled(Link)`

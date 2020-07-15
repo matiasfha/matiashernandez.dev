@@ -36,7 +36,6 @@ function PostSubmissionMessage() {
 const SubscribeFormWrapper = styled.div`
   color: black;
   width: 100%;
-  max-width: 350px;
   padding: 40px;
   background: white;
   border-radius: 5px;
