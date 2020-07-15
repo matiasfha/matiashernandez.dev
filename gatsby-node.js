@@ -197,15 +197,3 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
   }
 };
-
-exports.sourceNodes = async ({
-  actions,
-  createContentDigest,
-  createNodeId,
-}) => {
-  const response = await fetch(
-    "https://egghead.io/api/v1/instructors/matias-francisco-hernandez-arellano"
-  );
-  const data = await response.json();
-  console.log(data);
-};

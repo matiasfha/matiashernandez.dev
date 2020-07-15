@@ -21,6 +21,6 @@
     "max-lines-per-function": "off",
     "babel/quotes": "off",
     "consistent-return": "off",
-    "import/extensions": ["warn",{"js": "always", "css": "always", "mdx": "ignorePackages"}]
+    "import/extensions": ["warn",{"js": "always", "css": "always", "mdx": "ignorePackages","png": "always", "jpeg": "always"}]
   }
 }

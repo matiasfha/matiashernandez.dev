@@ -7,6 +7,7 @@ import { fonts } from "@/lib/typography";
 import Layout from "@/components/Layout";
 import Link from "@/components/Link";
 import PodcastCard from "@/components/PodcastCard";
+import EggheadSection from "@/components/EggheadSection";
 import ControlRemotoLogo from "assets/ControLRemotoLogo.jpeg";
 import ControlRemotoBG from "assets/ControlRemotoBG.png";
 import CafeConTechLogo from "assets/CafeConTechLogo.jpeg";
@@ -34,7 +35,7 @@ const PostCard = styled(Link)`
   display: flex;
   justify-content: center;
   text-decoration: none;
-  background-image: url("https://static.wixstatic.com/media/6a09dadbfe8e4b2c844d14f0df73cb86.jpg/v1/fit/w_1362,h_908,al_c,q_80/file.jpg");
+  background-image: url(${(props) => props.background});
   background-position: 50%;
   background-repeat: no-repeat;
   background-size: cover;
@@ -110,37 +111,6 @@ const PodcastSection = ({ cafeConTech, controlRemoto }) => (
   </>
 );
 
-const EggheadContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 3rem;
-  position: relative;
-  padding-bottom: 2rem;
-  min-height: 500px;
-  height: 500px;
-`;
-
-const EggheadColumn = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-rows: 30px 1fr;
-  grid-gap: 10px;
-  grid-template-areas:
-    "title"
-    "video";
-  justify-content: space-between;
-`;
-
-const Eggheadtitle = styled.h3`
-  font-family: Lato Black;
-  color: #333;
-  grid-area: title;
-`;
-
-const EggheadVideo = styled.div`
-  grid-area: video;
-  position: relative;
-`;
 export default function Index({
   data: {
     site,
@@ -155,47 +125,7 @@ export default function Index({
         cafeConTech={allPodcastEpisodeCafeConTech}
         controlRemoto={allPodcastEpisodeControlRemoto}
       />
-      <h1>Ultimos Videos en Egghead</h1>
-      <EggheadContainer>
-        <EggheadColumn>
-          <Eggheadtitle>
-            Crear un pugin de Gatbys para consumir datos de una API externa
-          </Eggheadtitle>
-          <EggheadVideo>
-            <iframe
-              src="https://egghead.io/lessons/gatsby-crear-un-plugin-de-gatsby-para-consumir-datos-de-una-api-externa/embed?pl=matias-blogs-posts-4783"
-              css={css`
-                width: 100%;
-                height: 280px;
-                top: 70px;
-                left: 0px;
-                border: none;
-                position: absolute;
-              `}
-              allowFullScreen
-            />
-          </EggheadVideo>
-        </EggheadColumn>
-        <EggheadColumn>
-          <Eggheadtitle>
-            3 Formas de Actualizar un arreglo de objetos en Javaacript
-          </Eggheadtitle>
-          <EggheadVideo>
-            <iframe
-              src="https://egghead.io/lessons/javascript-3-formas-de-actualizar-un-arreglo-de-objetos-en-javascript/embed"
-              css={css`
-                width: 100%;
-                height: 280px;
-                top: 70px;
-                left: 0px;
-                border: none;
-                position: absolute;
-              `}
-              allowFullScreen
-            />
-          </EggheadVideo>
-        </EggheadColumn>
-      </EggheadContainer>
+      <EggheadSection />
       <h1>Blog</h1>
       <PostsContainer>
         {allMdx.edges.map(({ node: post }) => (
@@ -203,6 +133,7 @@ export default function Index({
             key={post.id}
             to={post.fields.slug}
             aria-label={`View ${post.frontmatter.title}`}
+            background={post.frontmatter.banner.childImageSharp.fluid.src}
           >
             <PostOverlay />
             <PostContentContainer>
@@ -248,6 +179,7 @@ export const pageQuery = graphql`
         id
         title
         slug
+        audio_url
         remoteImage {
           childImageSharp {
             fluid(maxWidth: 60, quality: 70) {
@@ -267,6 +199,7 @@ export const pageQuery = graphql`
         id
         title
         slug
+        audio_url
         remoteImage {
           childImageSharp {
             fluid(maxWidth: 60, quality: 70) {
@@ -297,7 +230,7 @@ export const pageQuery = graphql`
             description
             banner {
               childImageSharp {
-                fluid(maxWidth: 720) {
+                fluid(maxWidth: 350) {
                   ...GatsbyImageSharpFluid
                 }
               }

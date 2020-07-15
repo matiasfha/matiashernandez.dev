@@ -18,7 +18,7 @@ const PodcastColumn = styled.div`
   }
 `;
 
-const PodcastEpisode = styled(Link)`
+const PodcastEpisode = styled.a`
   position: relative;
   text-decoration: none;
   display: grid;
@@ -122,7 +122,7 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
         {episodes.map((item) => (
           <PodcastEpisode
             key={item.id}
-            to={`podcast/${item.podcastName}/${item.slug}}`}
+            href={item.audio_url.split(".").slice(0, -1).join(".")}
           >
             <h4>{item.title}</h4>
             <PodcastImg fluid={item.remoteImage.childImageSharp.fluid} />

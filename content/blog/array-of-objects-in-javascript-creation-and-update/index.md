@@ -1,10 +1,12 @@
 ---
-slug: "/react-book"
-date: "2017-07-14T03:49:16.408Z"
-title: "The Road to learn React"
-description: "The Road to learn React Description ..."
-categories: ["react"]
-keywords: ["react", "book"]
+slug: "/array-of-objects-in-javascript-creation-and-update"
+date: "2020-07-15T15:23:41.893"
+title: "Array de objetos en Javascript, como crearlos y actualizarlos"
+description: "En Javascript es posible crear arreglos de objetos de diversas maneras. Tambien ofrece
+formas de manipular este tipo de datos de forma mutable o inmmutable. Para esto ofrece funciones
+como `Array.fill`, `Array.map`, `Array.slice`, etc"
+categories: ["javascript"]
+keywords: ["javascript", "array"]
 banner: "./images/banner.jpg"
 ---
 
