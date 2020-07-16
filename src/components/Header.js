@@ -158,13 +158,13 @@ const NAVIGATION = [
   { to: "/about", label: "About" },
 ];
 
-const Header = ({ title }) => {
+const Header = () => {
   return (
     <HeaderContainer>
       <Container>
         <Nav>
           <HeaderLink to="/">
-            <img src={Logo} alt={title} />
+            <img src={Logo} alt="Sitio de Matias Hernandez" />
           </HeaderLink>
           <div css={{ justifySelf: "end" }}>
             {NAVIGATION.map((item) => (

@@ -3,7 +3,8 @@ import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Link from "components/Link";
 import Subscribe from "components/Subscribe";
-import { bpMaxSM, bpTabletOnly } from "@/lib/breakpoints";
+import { bpMaxSM } from "@/lib/breakpoints";
+import { useStaticQuery, graphql } from "gatsby";
 
 const Container = styled.footer`
   display: grid;
@@ -168,8 +169,23 @@ export const GitHub = ({ color = `rgba(255,255,255,0.7)`, url }) => (
   </Link>
 );
 
-const Footer = ({ data }) => {
-  const { twitter, rss, linkedin, github } = data;
+const Footer = () => {
+  const {
+    site: {
+      siteMetadata: { twitter, rss, linkedin, github },
+    },
+  } = useStaticQuery(graphql`
+    {
+      site {
+        siteMetadata {
+          twitter
+          github
+          rss
+          linkedin
+        }
+      }
+    }
+  `);
   return (
     <Container>
       <FooterContent>

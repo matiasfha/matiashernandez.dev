@@ -5,7 +5,9 @@ import { MDXProvider } from "@mdx-js/react";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Header from "@/components/Header";
+import SmallHeader from "@/components/SmallHeader";
 import Footer from "@/components/Footer";
+import Seo from "@/components/Seo";
 import { fonts } from "@/lib/typography";
 import { bpMaxSM } from "@/lib/breakpoints";
 import reset from "@/lib/reset";
@@ -56,38 +58,14 @@ const Content = styled.div`
   }
 `;
 
-const Layout = ({ site, frontmatter = {}, children }) => {
-  const {
-    title,
-    description: siteDescription,
-    keywords: siteKeywords,
-  } = site.siteMetadata;
-
-  const {
-    keywords: frontmatterKeywords,
-    description: frontmatterDescription,
-  } = frontmatter;
-
-  const keywords = (frontmatterKeywords || siteKeywords).join(", ");
-  const description = frontmatterDescription || siteDescription;
-
+const Layout = ({ frontmatter = {}, children, header = true }) => {
   return (
     <Fragment>
-      <Helmet
-        title={title}
-        meta={[
-          { name: "description", content: description },
-          { name: "keywords", content: keywords },
-        ]}
-      >
-        <html lang="en" />
-        <noscript>This site runs best with JavaScript enabled.</noscript>
-      </Helmet>
-
+      <Seo />
       <Global styles={GlobalStyle} />
 
       <>
-        <Header title={title} />
+        {header ? <Header /> : <SmallHeader />}
         <MDXProvider
           components={{
             ...MDXLayoutComponents,
@@ -97,7 +75,7 @@ const Layout = ({ site, frontmatter = {}, children }) => {
           <MainContainer>
             <Content>{children}</Content>
           </MainContainer>
-          <Footer data={site.siteMetadata} />
+          <Footer />
         </MDXProvider>
       </>
     </Fragment>
@@ -105,18 +83,3 @@ const Layout = ({ site, frontmatter = {}, children }) => {
 };
 
 export default Layout;
-
-export const pageQuery = graphql`
-  fragment site on Site {
-    siteMetadata {
-      title
-      description
-      author
-      keywords
-      twitter
-      github
-      linkedin
-      rss
-    }
-  }
-`;

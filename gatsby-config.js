@@ -20,6 +20,7 @@ module.exports = {
     github: "https://github.com/matiasfha/",
     linkedin: "https://www.linkedin.com/in/mhernand/",
     rss: "https://kentcdodds.com/blog/rss.xml",
+    image: "images/logo.png",
     description:
       "Hola! Soy Matias Hernandez. Ingeniero de Software, Podcaster e Instructor.",
     keywords: [
@@ -56,6 +57,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        defaultLayouts: {
+          default: path.join(__dirname, "./src/templates/page.js"),
+        },
         extensions: [".mdx", ".md"],
         gatsbyRemarkPlugins: [
           {
@@ -114,5 +118,6 @@ module.exports = {
         pathToConfigModule: `src/lib/typography`,
       },
     },
+    `gatsby-plugin-netlify-cms`,
   ],
 };

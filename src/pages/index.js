@@ -127,7 +127,7 @@ export default function Index({
   },
 }) {
   return (
-    <Layout site={site}>
+    <Layout>
       <PodcastSection
         cafeConTech={allPodcastEpisodeCafeConTech}
         controlRemoto={allPodcastEpisodeControlRemoto}
@@ -174,9 +174,6 @@ export default function Index({
 
 export const pageQuery = graphql`
   query {
-    site {
-      ...site
-    }
     allPodcastEpisodeCafeConTech(
       limit: 2
       sort: { order: DESC, fields: published_at }
@@ -209,7 +206,7 @@ export const pageQuery = graphql`
         audio_url
         remoteImage {
           childImageSharp {
-            fluid(maxWidth: 120, quality: 70) {
+            fluid(maxWidth: 60, quality: 70) {
               ...GatsbyImageSharpFluid
               ...GatsbyImageSharpFluidLimitPresentationSize
             }

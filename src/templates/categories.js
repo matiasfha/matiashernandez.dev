@@ -1,15 +1,14 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React from "react";
+import { graphql } from "gatsby";
 
-import Link from '../components/Link';
-import Layout from '../components/Layout';
+import Link from "../components/Link";
+import Layout from "../components/Layout";
 
 const CategoryItem = ({ postsByCategory, category }) => (
   <div>
     <h1>
       {postsByCategory.length} post
-      {postsByCategory.length === 1 ? '' : 's'} categoryged with{' '}
-      {category}
+      {postsByCategory.length === 1 ? "" : "s"} categoryged with {category}
     </h1>
 
     <ul>
@@ -35,7 +34,7 @@ const CategoryList = ({ postsByCategories }) => (
   <div>
     <h1>Categories</h1>
     <ul>
-      {Object.keys(postsByCategories).map(key => (
+      {Object.keys(postsByCategories).map((key) => (
         <li key={key}>
           <Link to={`/categories/${key}`}>{key}</Link>
         </li>
@@ -44,9 +43,9 @@ const CategoryList = ({ postsByCategories }) => (
   </div>
 );
 
-export default function Categories({ data: { site }, pageContext }) {
+export default function Categories({ pageContext }) {
   return (
-    <Layout site={site}>
+    <Layout>
       {pageContext.category ? (
         <CategoryItem {...pageContext} />
       ) : (
@@ -55,11 +54,3 @@ export default function Categories({ data: { site }, pageContext }) {
     </Layout>
   );
 }
-
-export const pageQuery = graphql`
-  query {
-    site {
-      ...site
-    }
-  }
-`;
