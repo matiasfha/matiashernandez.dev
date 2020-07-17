@@ -5,6 +5,9 @@ require("dotenv").config({
 
 const BUZZSPROUT_TOKEN = process.env.BUZZSPROUT_TOKEN;
 
+const eggheadTransformer = require("./embedder-transformers/egghead");
+const codesandboxTransformer = require("./embedder-transformers/codesandbox");
+
 module.exports = {
   pathPrefix: "/",
   siteMetadata: {
@@ -75,6 +78,12 @@ module.exports = {
               classPrefix: "language-",
               inlineCodeMarker: null,
               aliases: {},
+            },
+          },
+          {
+            resolve: `gatsby-remark-embedder`,
+            options: {
+              customTransformers: [eggheadTransformer, codesandboxTransformer],
             },
           },
         ],
