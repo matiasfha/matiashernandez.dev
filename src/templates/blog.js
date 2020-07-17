@@ -1,26 +1,27 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 import Img from "gatsby-image";
 
-import Layout from "../components/Layout";
-import Link from "../components/Link";
+import Layout from "@/components/Layout";
+import Link from "@/components/Link";
 
 const Categories = ({ categories }) => (
   <ul>
-      {categories.map((category) => (
-        <li key={category}>
-          <Link to={`/categories/${category}`}>{category}</Link>
-        </li>
-      ))}
-    </ul>
+    {categories.map((category) => (
+      <li key={category}>
+        <Link to={`/categories/${category}`}>{category}</Link>
+      </li>
+    ))}
+  </ul>
 );
 
-const Blog = ({ pageContext: { pagination, categories } }) => {
+const Blog = ({ allMdx, pageContext: { pagination, categories } }) => {
   const { page, nextPagePath, previousPagePath } = pagination;
 
-  const posts = page.map((id) =>
-    allMdx.edges.find((edge) => edge.node.id === id)
-  );
+  const posts =
+    allMdx == null
+      ? []
+      : page.map((id) => allMdx.edges.find((edge) => edge.node.id === id));
 
   return (
     <Layout>
