@@ -21,3 +21,5 @@ fields:
     maxSize: '10'
   label: hero image
   description: Enter hero image for blog post here
+pages:
+- content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
