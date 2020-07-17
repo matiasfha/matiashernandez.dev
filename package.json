@@ -73,7 +73,8 @@
     "validate": "npm run build",
     "lint": "estlint .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|graphql|md|mdx)\"",
-    "shorten": "netlify-shortener"
+    "shorten": "netlify-shortener",
+    "forestry-preview": "gatsby develop -p 8080 -H 0.0.0.0"
   },
   "husky": {
     "hooks": {
