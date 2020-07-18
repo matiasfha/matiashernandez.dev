@@ -3,45 +3,6 @@ const fetch = require("node-fetch");
 
 const PAGINATION_OFFSET = 2;
 
-const pluckCategories = (edges) =>
-  Object.keys(
-    edges.reduce((acc, value) => {
-      value.node.fields.categories.forEach((category) => {
-        if (!acc[category]) {
-          acc[category] = category;
-        }
-      });
-
-      return acc;
-    }, {})
-  );
-
-const groupByCategory = (edges) =>
-  edges.reduce((acc, value) => {
-    value.node.fields.categories.forEach((category) => {
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(value);
-    });
-    return acc;
-  }, {});
-
-const createCategoryPages = (createPage, edges) => {
-  const categories = pluckCategories(edges);
-
-  const posts = groupByCategory(edges);
-
-  Object.keys(posts).forEach((category) => {
-    createPaginatedPages(
-      createPage,
-      posts[category],
-      `/categories/${category}`,
-      { categories, activeCategory: category }
-    );
-  });
-};
-
 const createPosts = (createPage, edges) => {
   edges.forEach(({ node }, i) => {
     const prev = i === 0 ? null : edges[i - 1].node;
@@ -60,9 +21,7 @@ const createPosts = (createPage, edges) => {
 };
 
 const createBlog = (createPage, edges) => {
-  const categories = pluckCategories(edges);
-
-  createPaginatedPages(createPage, edges, "/blog", { categories });
+  createPaginatedPages(createPage, edges, "/blog");
 };
 
 const createPaginatedPages = (createPage, edges, pathPrefix, context) => {
@@ -112,7 +71,6 @@ exports.createPages = ({ actions, graphql }) =>
             fields {
               title
               slug
-              categories
             }
             body
           }
@@ -128,7 +86,6 @@ exports.createPages = ({ actions, graphql }) =>
 
     createBlog(actions.createPage, edges);
     createPosts(actions.createPage, edges);
-    createCategoryPages(actions.createPage, edges);
   });
 
 exports.onCreateWebpackConfig = ({ actions }) => {
@@ -179,15 +136,9 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
     });
 
     createNodeField({
-      name: "banner",
+      name: "hero_image",
       node,
-      banner: node.frontmatter.banner,
-    });
-
-    createNodeField({
-      name: "categories",
-      node,
-      value: node.frontmatter.categories || [],
+      banner: node.frontmatter.hero_image,
     });
 
     createNodeField({

@@ -5,17 +5,7 @@ import Img from "gatsby-image";
 import Layout from "@/components/Layout";
 import Link from "@/components/Link";
 
-const Categories = ({ categories }) => (
-  <ul>
-    {categories.map((category) => (
-      <li key={category}>
-        <Link to={`/categories/${category}`}>{category}</Link>
-      </li>
-    ))}
-  </ul>
-);
-
-const Blog = ({ allMdx, pageContext: { pagination, categories } }) => {
+const Blog = ({ allMdx, pageContext: { pagination } }) => {
   const { page, nextPagePath, previousPagePath } = pagination;
 
   const posts =
@@ -25,10 +15,6 @@ const Blog = ({ allMdx, pageContext: { pagination, categories } }) => {
 
   return (
     <Layout>
-      <div>
-        All categories on the blog: <Categories categories={categories} />
-      </div>
-
       {posts.map(({ node: post }) => (
         <div key={post.id}>
           {post.frontmatter.banner && (
@@ -89,7 +75,6 @@ export const pageQuery = graphql`
               }
             }
             slug
-            categories
             keywords
           }
         }
