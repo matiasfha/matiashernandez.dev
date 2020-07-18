@@ -15,12 +15,13 @@ fields:
     time_format: 
     display_utc: false
   default: now
-- name: hero_image
+- name: banner
   type: file
   config:
     maxSize: '10'
-  label: hero image
+  label: Hero Image
   description: Enter hero image for blog post here
+  default: https://res.cloudinary.com/matiasfha/image/upload/v1595045136/pierre-bamin-P2POGRtGprA-unsplash_gx6ozd.jpg
 - name: slug
   type: text
   config:
