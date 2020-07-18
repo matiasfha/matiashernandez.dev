@@ -44,8 +44,8 @@ const HeaderContainer = styled.header`
     font-size: 14px;
     grid-template-columns: 1fr;
     grid-template-areas: "hero";
-    padding: 0 1rem;
-    height: 12rem;
+    padding: 0.5rem 1rem;
+    height: 5rem;
   }
 `;
 
@@ -55,6 +55,9 @@ const Nav = styled.nav`
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: start;
+  ${bpMaxSM} {
+    grid-area: hero;
+  }
 `;
 
 const HeaderLink = styled(Link)`
