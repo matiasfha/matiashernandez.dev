@@ -1,56 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
-import Img from "gatsby-image";
+import styled from "@emotion/styled";
 
 import Layout from "@/components/Layout";
-import Link from "@/components/Link";
+import PostsSection from "@/components/PostsSection";
 
-const Blog = ({ allMdx, pageContext: { pagination } }) => {
-  const { page, nextPagePath, previousPagePath } = pagination;
-
-  const posts =
-    allMdx == null
-      ? []
-      : page.map((id) => allMdx.edges.find((edge) => edge.node.id === id));
-
+const Blog = ({ data: { allMdx } }) => {
   return (
-    <Layout>
-      {posts.map(({ node: post }) => (
-        <div key={post.id}>
-          {post.frontmatter.banner && (
-            <Img sizes={post.frontmatter.banner.childImageSharp.sizes} />
-          )}
-
-          <h2>
-            <Link to={post.frontmatter.slug}>{post.frontmatter.title}</Link>
-          </h2>
-
-          <small>{post.frontmatter.date}</small>
-
-          <p>{post.excerpt}</p>
-
-          <Link to={post.frontmatter.slug}>Continue Reading</Link>
-        </div>
-      ))}
-
-      <hr />
-
-      <div>
-        Pagination:
-        <ul>
-          {nextPagePath && (
-            <li>
-              <Link to={nextPagePath}>Next Page</Link>
-            </li>
-          )}
-
-          {previousPagePath && (
-            <li>
-              <Link to={previousPagePath}>Previous Page</Link>
-            </li>
-          )}
-        </ul>
-      </div>
+    <Layout header={false} title="Blog">
+      <PostsSection posts={allMdx.edges} />
     </Layout>
   );
 };
@@ -59,22 +17,29 @@ export default Blog;
 
 export const pageQuery = graphql`
   query {
-    allMdx {
+    allMdx(
+      sort: { fields: frontmatter___date, order: DESC }
+      filter: { fileAbsolutePath: { regex: "//content/posts//" } }
+    ) {
       edges {
         node {
-          excerpt(pruneLength: 300)
           id
+          fields {
+            slug
+            readingTime {
+              text
+            }
+          }
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
+            description
             banner {
               childImageSharp {
-                sizes(maxWidth: 720) {
-                  ...GatsbyImageSharpSizes
+                fluid(maxWidth: 350) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
-            slug
             keywords
           }
         }

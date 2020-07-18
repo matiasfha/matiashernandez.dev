@@ -1,6 +1,4 @@
 import React, { Fragment } from "react";
-import { Helmet } from "react-helmet";
-import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -58,14 +56,20 @@ const Content = styled.div`
   }
 `;
 
-const Layout = ({ frontmatter = {}, children, header = true }) => {
+const Layout = ({
+  frontmatter = {},
+  children,
+  header = true,
+  background = true,
+  title,
+}) => {
   return (
     <Fragment>
-      <Seo />
+      <Seo title={title} />
       <Global styles={GlobalStyle} />
 
       <>
-        {header ? <Header /> : <SmallHeader />}
+        {header ? <Header /> : <SmallHeader background={background} />}
         <MDXProvider
           components={{
             ...MDXLayoutComponents,

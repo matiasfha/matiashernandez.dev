@@ -17,7 +17,9 @@ const HeaderContainer = styled.header`
   grid-template-areas: "left content right";
 
   padding: 1rem;
-  background-image: linear-gradient(
+  background-image: ${(props) =>
+    props.background
+      ? `linear-gradient(
     to left top,
     #0443ac,
     #1048af,
@@ -31,7 +33,8 @@ const HeaderContainer = styled.header`
     #3262c5,
     #3363c9,
     #3464cc
-  );
+  );`
+      : "none"}
   color: white;
   font-family: ${fonts.regular};
   ${bpTabletOnly} {
@@ -51,7 +54,6 @@ const Nav = styled.nav`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  justify-content: space-between;
   align-items: start;
 `;
 
@@ -62,39 +64,51 @@ const HeaderLink = styled(Link)`
   font-size: 14px;
   font-weight: bold;
   img {
-    width: 70px;
+    width: 60px;
     margin: 0;
   }
 `;
 
 const NavLink = styled(HeaderLink)`
-  padding: 8px 10px;
+  padding: 0px 10px;
   border-radius: 3px;
   background: transparent;
   font-weight: normal;
   font-family: ${fonts.regular};
   font-size: 16px;
+  color: ${(props) => (props.background ? "white" : "#333")};
   & + &: {
     margin-left: 10px;
   }
 `;
 
 const NAVIGATION = [
-  /*{ to: "/blog", label: "Blog" },
-  { to: "/podcasts", label: "Podcasts" },*/
+  { to: "/blog", label: "Blog" },
+  // { to: "/podcasts", label: "Podcasts" },
   { to: "/about", label: "About" },
 ];
 
-const Header = () => {
+const Header = ({ background = true }) => {
   return (
-    <HeaderContainer>
+    <HeaderContainer background={background}>
       <Nav>
         <HeaderLink to="/">
           <img src={Logo} alt="Sitio de Matias Hernandez" />
         </HeaderLink>
-        <div css={{ justifySelf: "end" }}>
+        <div
+          css={{
+            justifySelf: "end",
+            alignSelf: "start",
+            padding: "0.5rem 0",
+          }}
+        >
           {NAVIGATION.map((item) => (
-            <NavLink key={item.label} to={item.to} aria-label={item.label}>
+            <NavLink
+              key={item.label}
+              to={item.to}
+              aria-label={item.label}
+              background={background}
+            >
               {item.label}
             </NavLink>
           ))}

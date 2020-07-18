@@ -1,5 +1,6 @@
 const path = require("path");
 const fetch = require("node-fetch");
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 
 const PAGINATION_OFFSET = 2;
 
@@ -99,8 +100,14 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions;
+exports.onCreateNode = async ({
+  node,
+  getNode,
+  actions,
+  createNodeId,
+  getCache,
+}) => {
+  const { createNode, createNodeField } = actions;
 
   if (node.internal.type === `Mdx`) {
     const parent = getNode(node.parent);
@@ -135,10 +142,24 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       value: node.frontmatter.date || "",
     });
 
+    if (node.frontmatter.banner) {
+      const fileNode = await createRemoteFileNode({
+        // the url of the remote image to generate a node for
+        url: node.frontmatter.banner,
+        parentNodeId: node.id,
+        createNode,
+        createNodeId,
+        getCache,
+      });
+      if (fileNode) {
+        //node.remoteImage___NODE = fileNode.id;
+        node.frontmatter.banner___NODE = fileNode.id;
+      }
+    }
     createNodeField({
-      name: "hero_image",
+      name: "banner",
       node,
-      banner: node.frontmatter.hero_image,
+      value: node.frontmatter.banner,
     });
 
     createNodeField({

@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 
-const Seo = () => {
+const Seo = ({ title }) => {
   const { site } = useStaticQuery(graphql`
     {
       site {
@@ -19,7 +19,7 @@ const Seo = () => {
     }
   `);
   const {
-    title,
+    title: siteTitle,
     description,
     keywords,
     twitter,
@@ -29,7 +29,7 @@ const Seo = () => {
 
   return (
     <Helmet
-      title={title}
+      title={title || siteTitle}
       meta={[
         { name: "description", content: description },
         { name: "keywords", content: keywords },

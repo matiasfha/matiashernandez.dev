@@ -51,7 +51,7 @@ const Copy = styled.h1`
 
 const Image = styled.img`
   grid-area: image;
-  max-width: 18rem;
+  max-width: 17rem;
   justify-self: end;
   align-self: end;
   margin-bottom: 0;
@@ -110,8 +110,6 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 100px 1fr;
   grid-row-gap: 3rem;
-  justify-content: space-between;
-  align-items: center;
   ${bpTabletOnly} {
     grid-row-gap: 2rem;
   }
@@ -124,7 +122,6 @@ const Nav = styled.nav`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  justify-content: space-between;
   align-items: start;
 `;
 
@@ -135,13 +132,13 @@ const HeaderLink = styled(Link)`
   font-size: 14px;
   font-weight: bold;
   img {
-    width: 70px;
+    width: 60px;
     margin: 0;
   }
 `;
 
 const NavLink = styled(HeaderLink)`
-  padding: 8px 10px;
+  padding: 0px 10px;
   border-radius: 3px;
   background: transparent;
   font-weight: normal;
@@ -154,7 +151,7 @@ const NavLink = styled(HeaderLink)`
 
 const NAVIGATION = [
   { to: "/blog", label: "Blog" },
-  { to: "/podcasts", label: "Podcasts" },
+  // { to: "/podcasts", label: "Podcasts" },
   { to: "/about", label: "About" },
 ];
 
@@ -166,7 +163,13 @@ const Header = () => {
           <HeaderLink to="/">
             <img src={Logo} alt="Sitio de Matias Hernandez" />
           </HeaderLink>
-          <div css={{ justifySelf: "end" }}>
+          <div
+            css={{
+              justifySelf: "end",
+              alignSelf: "start",
+              padding: "0.5rem 0",
+            }}
+          >
             {NAVIGATION.map((item) => (
               <NavLink key={item.label} to={item.to} aria-label={item.label}>
                 {item.label}
