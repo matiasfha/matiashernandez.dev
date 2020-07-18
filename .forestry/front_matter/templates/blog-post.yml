@@ -15,27 +15,32 @@ fields:
     time_format: 
     display_utc: false
   default: now
-- name: hero_image
+- name: banner
   type: file
   config:
     maxSize: '10'
-  label: hero image
+  label: Hero Image
   description: Enter hero image for blog post here
+  default: https://res.cloudinary.com/matiasfha/image/upload/v1595045136/pierre-bamin-P2POGRtGprA-unsplash_gx6ozd.jpg
 - name: slug
   type: text
   config:
     required: false
   label: Slug
   description: Slug of the post
-- name: description
-  type: text
-  config:
-    required: false
-  label: Description
-  description: Summary of the post
 - name: keywords
   type: tag_list
   default: []
   label: Keywords
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Description
+  description: Summary
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
