@@ -28,15 +28,19 @@ fields:
     required: false
   label: Slug
   description: Slug of the post
-- name: description
-  type: text
-  config:
-    required: false
-  label: Description
-  description: Summary of the post
 - name: keywords
   type: tag_list
   default: []
   label: Keywords
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Description
+  description: Summary
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
