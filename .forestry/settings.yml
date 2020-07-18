@@ -23,9 +23,9 @@ sections:
   path: config.json
   label: Site Info
 upload_dir: ''
-public_path: https://res.cloudinary.com/matiasfha/image/upload/.
-front_matter_path: ''
-use_front_matter_path: 
+public_path: https://res.cloudinary.com/matiasfha/image/upload/c_scale,w_auto:100,dpr_auto
+front_matter_path: https://res.cloudinary.com/matiasfha/image/upload
+use_front_matter_path: true
 file_template: ":filename:"
 build:
   preview_output_directory: public
