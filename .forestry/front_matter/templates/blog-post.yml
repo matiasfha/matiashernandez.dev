@@ -42,5 +42,8 @@ fields:
       format: markdown
   label: Description
   description: Summary
+- name: published
+  type: boolean
+  label: Published
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
