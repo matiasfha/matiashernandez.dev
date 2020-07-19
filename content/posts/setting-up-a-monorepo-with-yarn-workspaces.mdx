@@ -11,5 +11,141 @@ description: The folder structure and module management of an application can be
 published: false
 
 ---
-This post was originally published for Modus Create Blog
+This post was originally published for [Modus Create Blog](https://moduscreate.com/blog/setting-up-a-monorepo-react-app-with-yarn/)
 
+The folder structure and module management of an application can become very complex and cumbersome as the application grows. This growth can quickly become difficult to track. A good way to structure the app is to write it in a per-feature basis, where each feature lives on its own place.
+
+A common and simple pattern is to split the application in different folders, but this can be taken further by creating different packages, that can be shared among different applications where each package represents a particular feature, component or functionality..
+
+This multi-package structure is already in practice by different organizations and is known as **Monorepo**. There are some tools that help managing this architecture like [Lerna](https://lerna.js.org/), [Bazel](https://bazel.build/) (from Google), [Buck](https://buckbuild.com/) (from Facebook), etc. but one of the easiest and straightforward ways to do it is with [yarn](https://yarnpkg.com/blog/2017/08/02/introducing-workspaces/).
+
+## Welcome to Monorepo
+
+Consider the following challenge that can be found in [Lerna’s](https://lerna.js.org/) site.
+
+> _Splitting up large codebases into separate independently versioned packages is extremely useful for code sharing. However, making changes across many repositories is messy and difficult to track, and testing across repositories gets complicated really fast._
+
+Here is where a variety of tools can help. Enter Lerna, which is _“a tool for managing Javascript projects with multiple packages”,_ and it _“optimizes the workflow around managing_ \[and publishing\] _multi-package repositories with git and npm.”_
+
+To address these and other problems related with management, scalability, and refactoring, some projects (like [Babel](http://github.com/babel/babel), [React](https://github.com/facebook/react), etc.) organize their codebases into a multi-package repository.
+
+Although at first glance this approach looks like _monolithic software development_ – which has a deserved bad reputation, the Monorepo idea is not incompatible with modular software development practices. **Managing code in one single repository can simplify the development of modular software in a big way.**
+
+## What Exactly is a Monorepo?
+
+In general, Monorepo is a single repository holding the code of multiple projects which may or may not be related. The projects inside a Monorepo can be dependents on each other (like [React](https://github.com/facebook/react/tree/master/packages), that is a set of packages that share functionality with each other, like: react, react-dom, react-reconcilier, etc ) or can be completely isolated (like [Google search](https://ai.google/research/pubs/pub45424) and Angular).
+
+Managing the projects’ core functionality and optional components or sub-application in **a single repository makes it a lot easier to maintain and keep everything in sync**.
+
+## What Issues Can a Monorepo Create or Have?
+
+Clearly, every decision we make can have downsides; in this case, some of the cons include:
+
+* Onboarding new developers may be harder because they are suddenly confronted with a huge codebase.
+* If the project is huge certain technical limitations of the source control system may arise – like handling terabytes of data. (Facebook fork Mercurial to update it to serve their needs, Google developed its own in-house distributed version control system)
+* Access control and/or restricting access to certain parts of the codebase can be hard or even impossible to implement.
+* Integration into an existing build process can be a burden. Building and testing the entire codebase can take a long time.
+
+## Why Monorepo?
+
+Some of the upsides of moving to a monorepo can include:
+
+* The single repository approach reduces the amount of repeated boilerplate code that has to be written to create multiple packages/app in different repositories.
+* A Monorepo approach creates **one source of truth**.
+* Sharing code and code reusability are easier, because every package belongs to the same repository and follows the same structure and development process.
+* Refactoring at large scale become very easy. A change in some API that affects multiple parts of the codebase can be done in a single commit or pull-request.
+
+## So, How Does it Work in Practice?
+
+The first step is to define the application where this approach will be used.
+
+Consider an application, similar to a content management system, where each user can see some data that belongs to himself.
+
+**Example:**
+
+The app is divided into 4 _pages_ or _views_ that show different data, but that can be related between each other.
+
+The first view shows a progress tracker for a set of tasks and a list of tasks to do. If the user selects a task from the list, the app renders (or redirects) to the second view to show the description of the task.
+
+So, as you see it is fairly simple and direct to set up this app on a per-feature basis, but since we are talking about Monorepo, let’s take the approach further and create multiple packages/app for each _view_.
+
+How will the **multi-package** set up look?
+
+    ├─ packages/
+    ├─── app				// Main package that serves the app
+    ├─── tracker			// The app that holds the tracker view logic 
+    ├─── dashboard			// The app that holds the dashboard view logic
+    ├─── tasks				// The app that holds the tasks view logic
+
+Inside the _app_ package:
+
+    ├─ app
+    ├─ package.json
+    ├─── src
+    ├───── index.js 			// Main entry point
+    ├──── routes.js 			// routing, here we import each other package and map to a route
+    ├──── resolvers/reducers	// Redux or other state management stuff
+    ├─ __tests__ 			// Jest unit tests
+    ├─ integrations 			// Cypress e2e tests
+    ....
+
+Inside each other package:
+
+    ├─ tracker
+    ├── package.json
+    ├── src
+    ├──── index.js
+    ├──── ...
+    ├── __tests__ 			// unit tests
+
+Here each big feature (in this case the principal views of the application) is represented as a package that has its own logic and dependencies, including its own tests (this can be unit tests or even e2e tests). This allows developers to focus only on one thing to develop and enables them to test their own work even if this package belongs to a huge Monorepo.
+
+Also, this multi-package setup allows easy management of the inter-dependencies of packages, avoiding the use of ../../../../../ imports and just using the name of the package to import the entire functionality.
+
+## Yarn to the Rescue.
+
+The maintenance work of a Monorepo can be done with different tools. Some of them, like Lerna or Builder, are focused mostly in the task of publishing your package to npm to make them available to other developers. But what if you want a monorepo that will not be published? Here is where a new feature from yarn (ok, not so new) comes into play.
+
+[Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) is a feature delivered by yarn that helps construct package architecture, allowing for the setup and management of multiple packages with just one yarn install. This allows the creation of the Monorepo multi-package setup without using yarn link or any other external tool. The workspaces can depend on one another while always using the most up-to-date code available. All the dependencies will be installed together while yarn optimizes it (e.g. hoisting the dependencies). A single lockfile for all the packages will be created.
+
+## How to Use it:
+
+Simply add two keywords to the main `package.json` file
+
+    {
+     	"private": true,
+    	"workspaces":  ["packages/web/*", "packages/shared/*"]
+    }
+
+The workspaces keyword defines the two main folders that hold the packages, and that everything under those folders will be a package with its own `package.json` file.
+
+In our example, under `packages/web/` we have the following packages: app, tracker, dashboard, and tasks; under `packages/shared`we have ui-kit and utils. Each of these folders has its own `package.json` with its own definitions, dependencies, and name (which is used later to import the files in the source code).
+
+As we described in the first section of our example, the **_app_** package hold all the bootstrap logic under it, and it will import the other packages to be built/rendered into the browser. When developing, add every new package as a dependency to the app and we will have everything we need.
+
+    yarn add tracker
+
+It is a good idea to use some organization/label name for your packages, like:
+
+    {
+    	name: '@myorg/tracker'
+    }
+
+So, to install that, go to the app folder and do `yarn install @myorg/tracker` or just add it to `package.json`.
+
+## Testing, Linting, and Other Tooling
+
+There are a few options to select, depending on the type of tool(s) we are running.
+
+* Linting: In this case, to keep the same rules through all the packages under the repo, it makes sense to have a root linter configuration that is used by the child packages (and your code editor) to lint your files. To run the linters as a script, using this global approach, add a script to the root `package.json` file to run the linter and lint all the files required (no matter what package they belong to). Use the same approach to run linters before push (with [https://github.com/okonet/lint-staged](https://github.com/okonet/lint-staged "https://github.com/okonet/lint-staged") and [https://github.com/typicode/husky](https://github.com/typicode/husky "https://github.com/typicode/husky")). This approach can become cumbersome and slow when you have a lot of packages to lint, but this can be solved by simple update the script to only lint a certain package at a time allowing the developer tolint only the code/package that he is touching.
+* Unit testing: Similar to linting, set up a global test runner (like Jest) to run the tests, and create a script to run tests by package.
+* e2e: For this case, the configuration should go to the main app package because that is where everything is integrated, and because that is the main entry point to run the application.
+* Styleguide: When working with something like Styleguidist or Storybook, it makes sense to have the configuration and runner inside the package that holds the `ui-kit` that is shared among the packages.
+
+## Conclusion
+
+By using a monorepo approach we get some simplified organization and less overhead from managing dependencies, which allows for easier navigation through the projects and easier sharing process.
+
+Thinking in the development process, every new feature can be added by working on a single pull request and a single commit can contain a change spanned through all the pieces of the repo.
+
+Finally, to keep everything in order and to get the advantages of the monorepo, the team have to be careful to not introduce unnecessary coupling between packages and think in each of them as isolated pieces of functionality
