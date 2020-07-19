@@ -45,6 +45,11 @@ fields:
 - name: published
   type: boolean
   label: Published
+- name: bannerCredit
+  type: text
+  config:
+    required: false
+  label: Banner Credit
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
 - content/posts/setting-up-a-monorepo-with-yarn-workspaces.mdx
