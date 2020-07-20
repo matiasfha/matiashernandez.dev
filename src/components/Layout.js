@@ -36,7 +36,8 @@ const GlobalStyle = css`
 
 const MainContainer = styled.main`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  margin: 0 auto;
+  grid-template-columns: 20% 60% 20%;
   grid-template-areas: "left content right";
   z-index: 5;
   min-height: 50rem;
@@ -51,8 +52,15 @@ const Content = styled.div`
   border-radius: 10px;
   padding: 40px 0px;
   width: 100%;
+  p {
+    font-size: 20px;
+  }
   ${bpMaxSM} {
-    padding: 40px 1rem;
+    padding: 40px 0.5rem;
+    font-size: 16px;
+    p {
+      font-size: 16px;
+    }
   }
 `;
 

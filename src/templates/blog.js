@@ -19,7 +19,10 @@ export const pageQuery = graphql`
   query {
     allMdx(
       sort: { fields: frontmatter___date, order: DESC }
-      filter: { fileAbsolutePath: { regex: "//content/posts//" } }
+      filter: {
+        fileAbsolutePath: { regex: "//content/posts//" }
+        frontmatter: { published: { eq: true } }
+      }
     ) {
       edges {
         node {

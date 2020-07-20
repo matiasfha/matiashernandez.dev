@@ -3,12 +3,16 @@ import styled from "@emotion/styled";
 import { TwitterShareButton, LinkedinShareButton } from "react-share";
 import { Twitter, LinkedIn } from "@/components/Footer";
 import { fonts } from "@/lib/typography";
+import { bpMaxSM } from "@/lib/breakpoints";
 
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 300px;
   grid-gap: 1rem;
   padding: 1rem 0 3rem;
+  ${bpMaxSM} {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Line = styled.div`
