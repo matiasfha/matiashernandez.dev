@@ -53,3 +53,4 @@ fields:
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
 - content/posts/setting-up-a-monorepo-with-yarn-workspaces.mdx
+- content/posts/unit-integration-and-e2e-what-to-test.mdx

@@ -1,0 +1,49 @@
+---
+date: 2020-07-21T00:27:45-04:00
+banner: https://res.cloudinary.com/matiasfha/image/upload/v1595305747/ferenc-almasi-EWLHA4T-mso-unsplash_ecgesm.jpg
+keywords:
+- testing
+- unit testing
+- integration test
+- e2e
+title: Unit, Integration and e2e, what to test?
+slug: unit-integration-and-e2e-what-to-test
+description: Write tests. Not too many. Mostly integration.
+published: false
+bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ferenc
+  Almasi</a> on <a href="https://unsplash.com/s/photos/unit-test?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+
+---
+I just stumbled upon (again) with some "old" tweet by Guillermo Rauch (twitter: @rauchg)
+
+
+
+Tweet by @rauchg. Write tests. Not too many. Mostly integration.This few words - IMHO - have lot of wisdom related with how you should test your applications.
+Write tests: Yeah! you should write tests for your libraries or applications, even for that little component that you want to publish to npm (yes. I'm talking from JS point of view, but I think this is valid for every language out there). For some folks, write tests is just a waste of time but I think differently, I prefer to spend some time writing tests that can help me to be confident that my app will not crash at 4:00am forcing me and the team to wake up to try to patch it or fix it, so since I do value my time and my team time I prefer to write tests.
+Not too many: Testing can be tricky some time. Should I write test for this particular piece of code? That is a good question that is implicit in this statement.
+Clearly there are pieces of code that don't require testing because is not what its need to be tested, like implementation details. What is important to test is the business logic associated with the code. If I'm writing a React app I should not be testing the render method of the component, since that was already tested by the React team. I should test what is rendered based on the logic that I wrote.
+From time to time I came across teams and/or manager that aims to get 100% coverage, but IMHO that is not useful and basically means that the team is wasting time writing tests that are not required. I think that a number between 70% and 80% coverage (in the case of unit tests) is enough.
+Mostly Integration: But, what is an integration test? So in order to understand this part of the statement we should know a few different types of tests that can be written for an app.
+Types of tests
+There are all sorts of different types of test that can be written, each of them have some trade-offs but there are three that are the most commons forms of testing (I'm talking here of automated tests): Unit, Integration and End to End.
+Unit tests: Testing of isolated function or classes to make sure that the output is the expected. Input data is mostly mocked. This kind of test should test the behavior of a unit of work. This tests are isolated and independent of the each other:
+Any given behavior should be defined in one and only one test.
+Order of execution doesn't matter. One test can't affect other.
+Are lightweight, Repeatable, Fast, Consistent, Easy to write and read.
+This are the cheaper kind of test. (in terms of time and resources).
+
+Integration tests- Testing several modules to ensure they work together as expected. Stop mocking all the world.
+An example of integration test is: A button that have a click handler that calls a logger method. An integration test will "click" the button and check that the logger method was called with the correct data and that the output is correct. In this case, there are two unit tests under the test:
+The button click event that calls the handler.
+The logger that logs an output.
+
+The unit test can assert that the logger returns the correct output for certain input, but the test will not check that the logger was called from a button, in fact, will not know anything about a button.
+End to End (or functional) tests: Are there to ensure that your application does what it's suppose to do from the user point of view. This tests feed input to the UI and make assertions on the output to make sure that the software works as expected.
+This are callend End to End because they test the entire application, from the api to the UI, this are a form of bigger integration test that test the full infraestructure and behaviors of every piece of the software.
+In a Javascript app, this tests run on a browser using tools like Cypress.io.
+This tests deliver high confidence since shows you how the app behave in a (almost)production environment.
+So, where to spend time writing test?
+You should have a balance between the three types of tests, the e2e are expensive (in terms of time and resource) to write, since they need a bigger infraestructure to run and a full app/feature to test, but they deliver more confidence so, you should have some of this tests in your suite. How much? Let's not think in number or metrics here, just aim to cover all the critical paths of your app, as example: if your app is a search engine for some product, you should at least test the workflow from the homepage to the search results page.
+The unit tests are the cheaper but if you only rely on this type, even if ou have 100% coverage, you can end with something like this.
+So, as said above. Write unit test, but only for a 70%-80% of coverage and focus on the business logic.
+Then, write Integration tests, remove the mocking stuff and check that your components behave as expected when work together.
