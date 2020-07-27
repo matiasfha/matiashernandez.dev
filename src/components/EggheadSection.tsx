@@ -66,20 +66,20 @@ const EggheadSection = () => {
       <h1>Ultimos Videos en Egghead</h1>
       <Container>
         <Column>
-          <Title href="https://egghead.io/lessons/gatsby-crear-un-plugin-de-gatsby-para-consumir-datos-de-una-api-externa">
-            Crear un pugin de Gatbys para consumir datos de una API externa
+          <Title href="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme">
+            Pesonaliza tu perfil en Github con el nuevo README
           </Title>
           <Video
-            url="https://egghead.io/lessons/javascript-3-formas-de-actualizar-un-arreglo-de-objetos-en-javascript/embed"
+            url="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme/embed"
             title="Gatsby source plugin"
           />
         </Column>
         <Column>
-          <Title href="https://egghead.io/lessons/javascript-3-formas-de-actualizar-un-arreglo-de-objetos-en-javascript">
-            3 Formas de actualizar un arreglo de objetos en Javascript
+          <Title href="https://egghead.io/lessons/gatsby-optimizar-images-remotas-en-un-plugin-fuente-para-gatsby">
+            Optimizar imágenes remotas en un plugin fuente para Gatsby
           </Title>
           <Video
-            url="https://egghead.io/lessons/javascript-3-formas-de-actualizar-un-arreglo-de-objetos-en-javascript/embed"
+            url="https://egghead.io/lessons/gatsby-optimizar-images-remotas-en-un-plugin-fuente-para-gatsby/embed"
             title="Array update"
           />
         </Column>
