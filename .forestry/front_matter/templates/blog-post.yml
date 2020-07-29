@@ -41,6 +41,24 @@ fields:
   config:
     required: false
   label: Banner Credit
+- name: tag
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - Seed
+    - Post
+    - Idea
+    - Thoughts
+    - Research
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Tag
+  description: Tag for the garden
 pages:
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
 - content/posts/measuring-your-react-app-performance.mdx

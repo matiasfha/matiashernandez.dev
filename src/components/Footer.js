@@ -196,7 +196,6 @@ const Footer = () => {
           <Twitter url={twitter} />
           <GitHub url={github} />
           <LinkedIn url={linkedin} />
-          <RSS url={rss} />
         </Social>
       </FooterContent>
     </Container>

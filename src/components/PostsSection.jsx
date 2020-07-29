@@ -52,7 +52,7 @@ const PostContentContainer = styled.div`
   padding: 1rem;
   display: grid;
   grid-template-rows: 1fr 1fr;
-  justify-content: space-betwen;
+  justify-content: space-between;
 `;
 
 const PostTitle = styled.h3`
@@ -72,11 +72,13 @@ const TimeToRead = styled.span`
 const Description = styled.div`
   width: 100%;
   font-family: ${fonts.regular};
-  font-size: 14px;
+  font-size: 12px;
   color: white;
   align-self: end;
+  justify-self: end;
   p {
     margin-bottom: 4px;
+    font-size: 14px;
   }
 `;
 
@@ -84,10 +86,23 @@ const Tag = styled.div`
   display: block;
   font-size: 0.8rem;
   width: 50px;
-  background: green;
   text-align: center;
   color: white;
   border-radius: 5px;
+  ${(props) => {
+    switch (props.value) {
+      case "post":
+        return `background: rgb(23,169,116)`;
+      case "seed":
+        return `background: rgb(4,67,172)`;
+      case "notes":
+        return `background: yellow`;
+      case "idea":
+        return `background: #ec2754`;
+      default:
+        return `background: transparent`;
+    }
+  }}
 `;
 
 const PostsSection = ({ posts, content = null }) => {
@@ -116,7 +131,9 @@ const PostsSection = ({ posts, content = null }) => {
               <div>
                 <PostTitle>{post.frontmatter.title}</PostTitle>
                 <TimeToRead>{post.fields.readingTime.text}</TimeToRead>
-                <Tag>Seed</Tag>
+                <Tag value={post.frontmatter.tag.toLowerCase()}>
+                  {post.frontmatter.tag}
+                </Tag>
               </div>
               <Description>
                 {post.frontmatter.description ? (

@@ -142,7 +142,7 @@ export const pageQuery = graphql`
                 }
               }
             }
-            keywords
+            tag
           }
         }
       }
