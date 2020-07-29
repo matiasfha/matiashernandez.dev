@@ -32,6 +32,9 @@ const GlobalStyle = css`
     border-image: initial;
     padding: 5px 10px;
   }
+  a {
+    text-decoration: none;
+  }
 `;
 
 const MainContainer = styled.main`

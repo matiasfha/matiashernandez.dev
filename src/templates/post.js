@@ -49,8 +49,16 @@ const Footer = styled.div`
     grid-template-columns: 100px 1fr;
   }
 `;
+
+const EditLink = styled.a`
+  text-align: right;
+  font-size: 12px;
+  text-decoration: none;
+`;
+
 export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
-  const { slug, date, title, banner, bannerCredit } = mdx.frontmatter;
+  const { date, title, banner, bannerCredit } = mdx.frontmatter;
+  const { slug } = mdx.fields;
   return (
     <>
       <Seo frontmatter={mdx.frontmatter} />
@@ -91,12 +99,23 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
             textAlign: "right",
             display: "block",
             fontSize: "12px",
-            marginBottom: "10px",
           }}
           title="Last Updated Date"
         >
           {date}
         </time>
+        <pre
+          css={{
+            textAlign: "right",
+            marginBottom: 0,
+          }}
+        >
+          <EditLink
+            href={`https://github.com/matiasfha/matiashernandez.dev/tree/master/content/posts/${slug}.mdx`}
+          >
+            Edita esto en github
+          </EditLink>
+        </pre>
         <SharePost url={`https://matiashernandez.dev/${slug}`} title={title} />
         <Footer>
           <img
@@ -109,7 +128,7 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
           />
           <p>
             <strong>Matias Hernandez A.</strong>
-            {` Ingeniero de Software Chileno. Ha escrito cientos de lineas de código para diversas compañias y clientes en EE.UU y Europa construyendo diversos productos.
+            {` Ingeniero de Producto/Software Chileno. Ha escrito cientos de lineas de código para diversas compañias y clientes en EE.UU y Europa construyendo diversos productos.
               `}
           </p>
         </Footer>
@@ -121,6 +140,10 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
 export const pageQuery = graphql`
   query($id: String!) {
     mdx(fields: { id: { eq: $id } }) {
+      fields {
+        slug
+      }
+
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
@@ -131,7 +154,6 @@ export const pageQuery = graphql`
             }
           }
         }
-        slug
         keywords
       }
       body
