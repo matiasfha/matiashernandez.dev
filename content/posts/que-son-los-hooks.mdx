@@ -13,7 +13,7 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_sou
 ---
 > Este post es parte transcripción  de lo emitido en el episodio 16 de Café con Tech y también material extra
 
-## ¿Qué son los Hooks en React y por que?
+#### ¿Qué son los Hooks en React y por que?
 
 Cuando esta nueva API fue anunciada en la React Conf en OCtubre de 2018 causo algo de controversia, muchos aplaudieron emocionados por las nuevas posibilidades y muchos otros quedaron con la duda del por que esto sería necesario cuando ya teníamos una API standard en forma de clases y varios patrones de diseño altamente probados.
 
@@ -25,9 +25,9 @@ Este tipo de casos son muy comunes en el desarrollo de aplicaciones complejas, c
 
 Normalmente las soluciones implementadas en estos casos caen en unos de estos tres tipos.
 
-- Componentes gigantes, que claramente son dificiles de mantener, refactorizar y testear
-- Logica duplicada entre diferentes componentes lo que dificulta la mantenibilidad del código o fomenta la creación de abstracciones aún más complejas
-- Patrones de diseño compuestos  como mezclas entres render props y high-order components
+* **Componentes gigantes**, que claramente son dificiles de mantener, refactorizar y testear
+* **Lógica duplicada** entre diferentes componentes lo que dificulta la mantenibilidad del código o fomenta la creación de abstracciones aún más complejas
+* **Patrones de diseño compuestos**  como mezclas entres render props y high-order components
 
 Entonces basado en todos estos problemas nacio Hooks, como un intento (bastante certero a decir verdad) de reparar todos esos problemas de un sólo golpe.
 
@@ -36,9 +36,9 @@ La idea trás hooks mantiene la filosofía implementada por react, composición 
 una crítica de los primeros días de hooks es que se acrecenta la curva de aprendizaje de React ya que existen multiples conceptos y formas de resolver un mismo problema, pero: Si se adopta (como se ha hecho hasta ahora) el uso de hooks como la formar primaria de escribir una aplicación React, en realidad se reduciría el número de conceptos con los que hay que lidiar. Aquí los principiantes lo tienen algo más fácil. No tiene un modelo mental que modificar y sólo deben ir directamente a utilizar y entender Hooks.
 Para los más viejitos, quizá sea una curva de aprendizaje un poco más empinada ya que el modelo mental internalizado genera ciertos choques que impiden entender del todo el funcionamiento de hooks. useEffect te estoy mirando a ti.
 
-¿Entonces que son los hooks?
+#### ¿Entonces que son los hooks?
 
-El principio básico del que nace esta implementación es en la reutilización de código. 
+El principio básico del que nace esta implementación es en la reutilización de código.
 Hasta antes de la llegada de esta API existían muchas formas de compartir o reutilizar código. funciones utilitarias para ciertos cálculos o componentes, que por cierto también son una función.
 El inconveniente de los componentes a la hora de reutilizar código es que estos deben de renderizar algo, por lo que si es necesario compartir logica que no corresponda con nuestra UI se tornan algo incovenientes dando nacimiento así a patrones más complejos como los high-order components y render props, que como comenté en el episodio anterior buscan una forma de compartir lógica entre diversos componentes, patrones también conocidos como headless components.
 
@@ -49,14 +49,14 @@ Hooks propone exactamente una solución a esto. La api de hooks permite utilizar
 
 React ofrece con esta nueva API algunos bloques de construcción básicos tales como:
 
-- useState: un hooks que permite mantener estado dentro de tu componente funcional
-- useReducer: una variante de useState que permite manejar estados más complejos utilizando una función reducer.
-- useEffect: Quizá el hook más complejo de entender  dado la insistencia de muchos en relacionarlo con los métodos del ciclo de vida de un componente tipo clase. Este es el hook que permite la realización de la obtención de datos, suscripciones o manipulación manual del DOM, esta diseñado para efectuar efectos secundarios o side effects.
-- useContext: El hook que democratizó la API context.
+* **useState**: un hooks que permite mantener estado dentro de tu componente funcional
+* **useReducer**: una variante de useState que permite manejar estados más complejos utilizando una función reducer.
+* **useEffect**: Quizá el hook más complejo de entender  dado la insistencia de muchos en relacionarlo con los métodos del ciclo de vida de un componente tipo clase. Este es el hook que permite la realización de la obtención de datos, suscripciones o manipulación manual del DOM, esta diseñado para efectuar efectos secundarios o side effects.
+* **useContext**: El hook que democratizó la API context.
 
 Los hooks son funciones totalmente encapsuladas, creando un estado local aislado dentro del componente en que se ejecuta, es decir, no son una forma de compartir estado, si no, una forma de compartir logica con estado.
 
-Entonces que pasó con las clases? las olvidamos.?
+#### Entonces que pasó con las clases? las olvidamos.?
 
 Los hooks personalizados son quizá la parte más interesante de esta api y para ello React provee de hooks básicos o pilares, para construir abstracciones poderosas, al ofrecer estos hooks básicos se cubre también otra necesidad: son suficientes para definir un componente en general, es por esto que la comunidad empuja a que Hooks sea la forma principal para construir componentes React.
 
@@ -73,4 +73,4 @@ Hooks no utiliza Proxies o getters que han sido muy popularizados en algunas mod
 
 Entonces, si estas comenzando con React. Enfoca tu búsqueda de información en ejemplos y contenido que muestre el desarrollo con hooks como pilar principal, si ya estas avanzado en el uso de la librería, ciertamente no es necesario que refactorices todo tu código para usar hooks, React tiene retro-compatibilidad y las clases no han sido marcadas como deprecated por lo que simplemente deberías enfocarte en el cambio de tu modelo mental y comenzar a crear nuevos features con la nueva api
 
-Por que hablo de un cambio de modelo mental?
+#### Por que hablo de un cambio de modelo mental?
