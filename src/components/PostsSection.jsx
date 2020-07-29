@@ -80,10 +80,29 @@ const Description = styled.div`
   }
 `;
 
-const PostsSection = ({ posts }) => {
+const Tag = styled.div`
+  display: block;
+  font-size: 0.8rem;
+  width: 50px;
+  background: green;
+  text-align: center;
+  color: white;
+  border-radius: 5px;
+`;
+
+const PostsSection = ({ posts, content = null }) => {
   return (
     <>
-      <h1>Blog</h1>
+      <h1>My digital garden</h1>
+      <p>
+        Un jardín digital es un espacio digital lleno de ideas interconectadas e
+        información recolectada, curada y siempre en progreso durante el tiempo.
+        Esto implica que dentro de este espacio existira contenido que aún no
+        "florece" o incluso que se encuentra en esetado de semilla o
+        germinación. Un conjunto de ideas que se mantienen en progreso. Estará
+        enfocado en Javascript, React y desarrollo web en general.
+      </p>
+      {content}
       <PostsContainer>
         {posts.map(({ node: post }) => (
           <PostCard
@@ -97,6 +116,7 @@ const PostsSection = ({ posts }) => {
               <div>
                 <PostTitle>{post.frontmatter.title}</PostTitle>
                 <TimeToRead>{post.fields.readingTime.text}</TimeToRead>
+                <Tag>Seed</Tag>
               </div>
               <Description>
                 {post.frontmatter.description ? (

@@ -117,11 +117,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMdx(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { published: { eq: true } } }
-      limit: 5
-    ) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }, limit: 5) {
       edges {
         node {
           id

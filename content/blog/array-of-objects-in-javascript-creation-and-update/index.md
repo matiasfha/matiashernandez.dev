@@ -1,5 +1,4 @@
 ---
-slug: "/array-of-objects-in-javascript-creation-and-update"
 date: "2020-07-15T15:23:41.893"
 title: "Array de objetos en Javascript, como crearlos y actualizarlos"
 description: "En Javascript es posible crear arreglos de objetos de diversas maneras. Tambien ofrece

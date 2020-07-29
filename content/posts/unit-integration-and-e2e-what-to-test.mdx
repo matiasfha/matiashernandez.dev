@@ -2,25 +2,32 @@
 date: 2020-07-21T00:27:45-04:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1595305747/ferenc-almasi-EWLHA4T-mso-unsplash_ecgesm.jpg
 keywords:
-- testing
-- unit testing
-- integration test
-- e2e
+  - testing
+  - unit testing
+  - integration test
+  - e2e
 title: Unit, Integration and e2e, what to test?
-slug: unit-integration-and-e2e-what-to-test
 description: Write tests. Not too many. Mostly integration.
-published: true
-bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ferenc
+bannerCredit:
+  <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Ferenc
   Almasi</a> on <a href="https://unsplash.com/s/photos/unit-test?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
-
 ---
-> Este es un post antiguo publicado en [Medium](https://medium.com/@matiasfh/unit-integration-and-e2e-what-to-write-168d9f104c04) 
+
+> Este es un post antiguo publicado en [Medium](https://medium.com/@matiasfh/unit-integration-and-e2e-what-to-write-168d9f104c04)
 >
 > This is an old Medium post
 
 I just stumbled upon (again) with some _“old”_ tweet by [Guillermo Rauch](https://medium.com/u/86da80adff6a) (twitter: [@rauchg](https://twitter.com/rauchg))
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Write tests. Not too many. Mostly integration.</p>— Guillermo Rauch (@rauchg) <a href="https://twitter.com/rauchg/status/807626710350839808?ref_src=twsrc%5Etfw">December 10, 2016</a></blockquote>
+<blockquote class="twitter-tweet">
+  <p lang="en" dir="ltr">
+    Write tests. Not too many. Mostly integration.
+  </p>
+  — Guillermo Rauch (@rauchg){" "}
+  <a href="https://twitter.com/rauchg/status/807626710350839808?ref_src=twsrc%5Etfw">
+    December 10, 2016
+  </a>
+</blockquote>
 
 Tweet by @rauchg. _Write tests. Not too many. Mostly integration._
 
@@ -42,17 +49,17 @@ There are all sorts of different types of test that can be written, each of them
 
 **Unit tests**: Testing of isolated function or classes to make sure that the output is the expected. Input data is mostly mocked. This kind of test should test the behavior of a **unit of work**. This tests are isolated and independent of the each other:
 
-* Any given behavior should be defined in **one and only one test.**
-* Order of execution doesn’t matter. **One test can’t affect other.**
-* Are lightweight, Repeatable, Fast, Consistent, Easy to write and read.
-* This are the cheaper kind of test. (in terms of time and resources).
+- Any given behavior should be defined in **one and only one test.**
+- Order of execution doesn’t matter. **One test can’t affect other.**
+- Are lightweight, Repeatable, Fast, Consistent, Easy to write and read.
+- This are the cheaper kind of test. (in terms of time and resources).
 
 **Integration tests**- Testing several modules to ensure they work together as expected. **Stop mocking all the world.**
 
 An example of integration test is: A button that have a click handler that calls a logger method. An integration test will “click” the button and check that the logger method was called with the correct data and that the output is correct. In this case, there are two unit tests under the test:
 
-* The button click event that calls the handler.
-* The logger that logs an output.
+- The button click event that calls the handler.
+- The logger that logs an output.
 
 The unit test can assert that the logger returns the correct output for certain input, but the test will not check that the logger was called from a button, in fact, will not know anything about a button.
 

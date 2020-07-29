@@ -2,16 +2,15 @@
 date: 2020-07-19T16:09:18-04:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1595192900/paul-hanaoka-4nabmlliGdU-unsplash_s4n7fe.jpg
 keywords:
-- Yarn
-- 'MonoRepo '
+  - Yarn
+  - "MonoRepo "
 title: Setting up a MonoRepo with Yarn Workspaces
-slug: setting-up-monorepo-with-yarn-workspaces
-description: The folder structure and module management of an application can become
+description:
+  The folder structure and module management of an application can become
   very complex and cumbersome as the application grow.
-published: true
-bannerCredit: ''
-
+bannerCredit: ""
 ---
+
 This post was originally published for [Modus Create Blog](https://moduscreate.com/blog/setting-up-a-monorepo-react-app-with-yarn/)
 
 The folder structure and module management of an application can become very complex and cumbersome as the application grows. This growth can quickly become difficult to track. A good way to structure the app is to write it in a per-feature basis, where each feature lives on its own place.
@@ -42,19 +41,19 @@ Managing the projects’ core functionality and optional components or sub-appli
 
 Clearly, every decision we make can have downsides; in this case, some of the cons include:
 
-* Onboarding new developers may be harder because they are suddenly confronted with a huge codebase.
-* If the project is huge certain technical limitations of the source control system may arise – like handling terabytes of data. (Facebook fork Mercurial to update it to serve their needs, Google developed its own in-house distributed version control system)
-* Access control and/or restricting access to certain parts of the codebase can be hard or even impossible to implement.
-* Integration into an existing build process can be a burden. Building and testing the entire codebase can take a long time.
+- Onboarding new developers may be harder because they are suddenly confronted with a huge codebase.
+- If the project is huge certain technical limitations of the source control system may arise – like handling terabytes of data. (Facebook fork Mercurial to update it to serve their needs, Google developed its own in-house distributed version control system)
+- Access control and/or restricting access to certain parts of the codebase can be hard or even impossible to implement.
+- Integration into an existing build process can be a burden. Building and testing the entire codebase can take a long time.
 
 ## Why Monorepo?
 
 Some of the upsides of moving to a monorepo can include:
 
-* The single repository approach reduces the amount of repeated boilerplate code that has to be written to create multiple packages/app in different repositories.
-* A Monorepo approach creates **one source of truth**.
-* Sharing code and code reusability are easier, because every package belongs to the same repository and follows the same structure and development process.
-* Refactoring at large scale become very easy. A change in some API that affects multiple parts of the codebase can be done in a single commit or pull-request.
+- The single repository approach reduces the amount of repeated boilerplate code that has to be written to create multiple packages/app in different repositories.
+- A Monorepo approach creates **one source of truth**.
+- Sharing code and code reusability are easier, because every package belongs to the same repository and follows the same structure and development process.
+- Refactoring at large scale become very easy. A change in some API that affects multiple parts of the codebase can be done in a single commit or pull-request.
 
 ## So, How Does it Work in Practice?
 
@@ -74,7 +73,7 @@ How will the **multi-package** set up look?
 
     ├─ packages/
     ├─── app				// Main package that serves the app
-    ├─── tracker			// The app that holds the tracker view logic 
+    ├─── tracker			// The app that holds the tracker view logic
     ├─── dashboard			// The app that holds the dashboard view logic
     ├─── tasks				// The app that holds the tasks view logic
 
@@ -138,10 +137,10 @@ So, to install that, go to the app folder and do `yarn install @myorg/tracker` o
 
 There are a few options to select, depending on the type of tool(s) we are running.
 
-* Linting: In this case, to keep the same rules through all the packages under the repo, it makes sense to have a root linter configuration that is used by the child packages (and your code editor) to lint your files. To run the linters as a script, using this global approach, add a script to the root `package.json` file to run the linter and lint all the files required (no matter what package they belong to). Use the same approach to run linters before push (with [https://github.com/okonet/lint-staged](https://github.com/okonet/lint-staged "https://github.com/okonet/lint-staged") and [https://github.com/typicode/husky](https://github.com/typicode/husky "https://github.com/typicode/husky")). This approach can become cumbersome and slow when you have a lot of packages to lint, but this can be solved by simple update the script to only lint a certain package at a time allowing the developer tolint only the code/package that he is touching.
-* Unit testing: Similar to linting, set up a global test runner (like Jest) to run the tests, and create a script to run tests by package.
-* e2e: For this case, the configuration should go to the main app package because that is where everything is integrated, and because that is the main entry point to run the application.
-* Styleguide: When working with something like Styleguidist or Storybook, it makes sense to have the configuration and runner inside the package that holds the `ui-kit` that is shared among the packages.
+- Linting: In this case, to keep the same rules through all the packages under the repo, it makes sense to have a root linter configuration that is used by the child packages (and your code editor) to lint your files. To run the linters as a script, using this global approach, add a script to the root `package.json` file to run the linter and lint all the files required (no matter what package they belong to). Use the same approach to run linters before push (with [https://github.com/okonet/lint-staged](https://github.com/okonet/lint-staged "https://github.com/okonet/lint-staged") and [https://github.com/typicode/husky](https://github.com/typicode/husky "https://github.com/typicode/husky")). This approach can become cumbersome and slow when you have a lot of packages to lint, but this can be solved by simple update the script to only lint a certain package at a time allowing the developer tolint only the code/package that he is touching.
+- Unit testing: Similar to linting, set up a global test runner (like Jest) to run the tests, and create a script to run tests by package.
+- e2e: For this case, the configuration should go to the main app package because that is where everything is integrated, and because that is the main entry point to run the application.
+- Styleguide: When working with something like Styleguidist or Storybook, it makes sense to have the configuration and runner inside the package that holds the `ui-kit` that is shared among the packages.
 
 ## Conclusion
 

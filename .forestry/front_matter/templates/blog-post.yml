@@ -22,12 +22,6 @@ fields:
   label: Hero Image
   description: Enter hero image for blog post here
   default: https://res.cloudinary.com/matiasfha/image/upload/v1595045136/pierre-bamin-P2POGRtGprA-unsplash_gx6ozd.jpg
-- name: slug
-  type: text
-  config:
-    required: false
-  label: Slug
-  description: Slug of the post
 - name: keywords
   type: tag_list
   default: []
@@ -42,9 +36,6 @@ fields:
       format: markdown
   label: Description
   description: Summary
-- name: published
-  type: boolean
-  label: Published
 - name: bannerCredit
   type: text
   config:

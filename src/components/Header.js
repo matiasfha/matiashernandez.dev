@@ -181,7 +181,8 @@ const Header = () => {
           <Copy>
             Hola! Soy Matias.
             <br />
-            Te ayudo a crear mejor software o a transformar tu idea en realidad.
+            Bienvenido a mi jardin digital, en donde comparto contenido para
+            ayudar a otros a escribir mejores productos
           </Copy>
           <Image src={Photo} alt="Matias Hernandez" />
         </HeroContainer>
