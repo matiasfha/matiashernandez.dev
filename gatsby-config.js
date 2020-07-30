@@ -7,6 +7,7 @@ const BUZZSPROUT_TOKEN = process.env.BUZZSPROUT_TOKEN;
 
 const eggheadTransformer = require("./embedder-transformers/egghead");
 const codesandboxTransformer = require("./embedder-transformers/codesandbox");
+const buzzsproutTransformer = require("./embedder-transformers/buzzsprout");
 
 module.exports = {
   pathPrefix: "/",
@@ -83,7 +84,11 @@ module.exports = {
           {
             resolve: `gatsby-remark-embedder`,
             options: {
-              customTransformers: [eggheadTransformer, codesandboxTransformer],
+              customTransformers: [
+                eggheadTransformer,
+                codesandboxTransformer,
+                buzzsproutTransformer,
+              ],
             },
           },
         ],

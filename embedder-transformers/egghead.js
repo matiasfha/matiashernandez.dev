@@ -34,7 +34,7 @@ const getHTML = (url) => {
         >
         </iframe>
       </div>
-    </di>
+    </div>
   `;
 };
 
