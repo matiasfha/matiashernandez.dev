@@ -28,6 +28,10 @@ front_matter_path: https://res.cloudinary.com/matiasfha/image/upload
 use_front_matter_path: true
 file_template: ":filename:"
 build:
+  preview_env:
+  - CONVERTKIT_SIGNUP_FORM=da21cefb3f
+  - BUZZSPROUT_TOKEN=c87c35a37bc06dc59b1226472c694fa4
+  - GOOGLE_ANALYTICS_ID=UA-45569809-2
   preview_output_directory: public
   install_dependencies_command: npm install
   preview_docker_image: node:10
