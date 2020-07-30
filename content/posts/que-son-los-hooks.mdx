@@ -13,6 +13,8 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@flowforfrank?utm_sou
 ---
 > Este post es parte transcripción  de lo emitido en el episodio 16 de Café con Tech y también material extra
 
+[https://www.buzzsprout.com/1081172/4728410-react-hooks](https://www.buzzsprout.com/1081172/4728410-react-hooks "https://www.buzzsprout.com/1081172/4728410-react-hooks")
+
 #### ¿Qué son los Hooks en React y por que?
 
 Cuando esta nueva API fue anunciada en la React Conf en OCtubre de 2018 causo algo de controversia, muchos aplaudieron emocionados por las nuevas posibilidades y muchos otros quedaron con la duda del por que esto sería necesario cuando ya teníamos una API standard en forma de clases y varios patrones de diseño altamente probados.
@@ -73,4 +75,13 @@ Hooks no utiliza Proxies o getters que han sido muy popularizados en algunas mod
 
 Entonces, si estas comenzando con React. Enfoca tu búsqueda de información en ejemplos y contenido que muestre el desarrollo con hooks como pilar principal, si ya estas avanzado en el uso de la librería, ciertamente no es necesario que refactorices todo tu código para usar hooks, React tiene retro-compatibilidad y las clases no han sido marcadas como deprecated por lo que simplemente deberías enfocarte en el cambio de tu modelo mental y comenzar a crear nuevos features con la nueva api
 
-#### Por que hablo de un cambio de modelo mental?
+#### ¿Por qué hablo de un cambio de modelo mental?
+
+Antes de la llegada oficial de Hooks la forma de construir aplicaciones con React estaba basada principalmente en el uso de clases y sus métodos de ciclos de vida. Los componentes funcionales o "stateless" eran incluso llamados "tontos" (dumb components) pues solo eran utilizados para renderizar partes de la UI sin realmente efectuar alguna acción dinámica, mas allá de representar el contenido de sus props.
+
+Hooks, presenta una forma distinta de manejar un componente, los métodos de ciclos de vida ya no existen o se han vuelto redundantes transformando la forma en que desarrollamos a un método más cercano a la programación funcional.   
+`React.useEffect`es el hook que se encarga de efectuar todas las mismas acciones que se podían hacer con los métodos de ciclo de vida, pero en realidad no es un reemplazo uno a uno de aquellos métodos, si no, una forma diferente de efectuar acciones sobre el component. 
+
+He aquí el cambio de modelo mental, ahora ya no estamos escribiendo clases, estamos escribiendo funciones que tiene un método de efectuar side effects.
+
+**¿Cómo se definen los side effects?**
