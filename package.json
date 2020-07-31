@@ -44,7 +44,7 @@
     "@emotion/core": "10.0.28",
     "@emotion/styled": "10.0.27",
     "@typescript-eslint/eslint-plugin": "3.6.1",
-    "@typescript-eslint/parser": "3.6.1",
+    "@typescript-eslint/parser": "3.7.1",
     "eslint-config-kentcdodds": "14.14.1",
     "eslint-plugin-cypress": "2.11.1",
     "eslint-plugin-jest": "23.18.0",
