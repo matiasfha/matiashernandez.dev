@@ -1,16 +1,25 @@
 const { URL } = require("url");
 
 const shouldTransform = (url) => {
-  const { host } = new URL(url);
-  return host.includes("buzzsprout.com");
+  const { host, pathname } = new URL(url);
+  return host.includes("buzzsprout.com") && pathname.includes("player");
 };
 
 const getHTML = (url) => {
-  const embedUrl = `${url}?client_source=admin&amp;iframe=true`;
+  const { pathname } = new URL(url);
+  const [, podcastId, episodeId] = pathname.split("/");
+  const embedUrl = `https://www.buzzsprout.com/${podcastId}/${episodeId}?client_source=admin&amp;iframe=true`;
   return `
-  <div style="position: relative">
-    <iframe src="${embedUrl}" width="100%" height="200" frameborder="0" scrolling="no"></iframe>
-  </div>
+    <div style="position:relative; width:100">
+        <iframe
+          src="${embedUrl}"
+          width="100%"
+          height="200"
+          frameBorder="0"
+          scrolling="no"
+          title="Podcast Episode"
+        />
+    </div>
   `;
 };
 

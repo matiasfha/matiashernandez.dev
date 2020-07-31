@@ -14,7 +14,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: "https://www.matiashernandez.dev/",
     author: "Matias Hernandez",
-    title: "Sitio Personal de Matias Hernandez",
+    title: "Digital Garden de Matias Hernandez",
     userTwitter: "@matiasfha", // Twitter Username
     ogSiteName: "Matias Hernandez A.", // Facebook Site Name
     ogLanguage: "es_CL",
@@ -26,9 +26,10 @@ module.exports = {
     rss: "https://kentcdodds.com/blog/rss.xml",
     image: "images/logo.png",
     description:
-      "Hola! Soy Matias Hernandez. Ingeniero de Software, Podcaster e Instructor.",
+      "Hola! Soy Matias Hernandez. Ingeniero de Product/Software, Podcaster e Instructor.",
     keywords: [
       "Software Engineer",
+      "Product Engineer",
       "Web Developer",
       "Consultant",
       "Freelancer",
@@ -94,6 +95,7 @@ module.exports = {
         ],
       },
     },
+    "@pauliescanlon/gatsby-mdx-embed",
     "gatsby-remark-reading-time",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",

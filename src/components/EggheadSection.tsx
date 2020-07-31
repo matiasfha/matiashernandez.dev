@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { EggheadLesson } from "@pauliescanlon/gatsby-mdx-embed";
 import { bpMaxSM } from "@/lib/breakpoints";
 
 const Container = styled.div`
@@ -36,31 +37,7 @@ const Title = styled.a`
   text-decoration: none;
 `;
 
-const VideoContainer = styled.div`
-  grid-area: video;
-  position: relative;
-`;
-
-const Iframe = styled.iframe`
-  width: 100%;
-  height: 280px;
-  top: 70px;
-  left: 0px;
-  border: none;
-  position: absolute;
-  ${bpMaxSM} {
-    height: 220px;
-  }
-`;
-
 const EggheadSection = () => {
-  const Video = ({ url, title }) => {
-    return (
-      <VideoContainer>
-        <Iframe src={url} allowFullScreen title={title} />
-      </VideoContainer>
-    );
-  };
   return (
     <>
       <h1>Ultimos Videos en Egghead</h1>
@@ -69,19 +46,13 @@ const EggheadSection = () => {
           <Title href="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme">
             Pesonaliza tu perfil en Github con el nuevo README
           </Title>
-          <Video
-            url="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme/embed"
-            title="Gatsby source plugin"
-          />
+          <EggheadLesson lessonId="egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme" />
         </Column>
         <Column>
           <Title href="https://egghead.io/lessons/gatsby-optimizar-images-remotas-en-un-plugin-fuente-para-gatsby">
             Optimizar imágenes remotas en un plugin fuente para Gatsby
           </Title>
-          <Video
-            url="https://egghead.io/lessons/gatsby-optimizar-images-remotas-en-un-plugin-fuente-para-gatsby/embed"
-            title="Array update"
-          />
+          <EggheadLesson lessonId="gatsby-optimizar-images-remotas-en-un-plugin-fuente-para-gatsby" />
         </Column>
       </Container>
     </>

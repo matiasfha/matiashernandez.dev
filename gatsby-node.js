@@ -112,7 +112,10 @@ exports.onCreateNode = async ({
   const { createNode, createNodeField } = actions;
   if (node.internal.type === `Mdx`) {
     const parent = getNode(node.parent);
-    const slug = createFilePath({ node, getNode, basePath: `content` });
+    const slug = createFilePath({ node, getNode, basePath: `content` }).replace(
+      /\//gi,
+      ""
+    );
     createNodeField({
       name: "id",
       node,

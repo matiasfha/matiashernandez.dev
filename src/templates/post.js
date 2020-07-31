@@ -38,6 +38,16 @@ const Article = styled.article`
       max-width: 90vw;
     }
   }
+  h4 {
+    font-family: ${fonts.semibold};
+    font-size: 1.3rem;
+  }
+  p {
+    font-size: 1rem;
+  }
+  code {
+    font-size: 0.8rem;
+  }
 `;
 
 const Footer = styled.div`

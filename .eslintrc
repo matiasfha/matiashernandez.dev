@@ -21,6 +21,7 @@
     "max-lines-per-function": "off",
     "babel/quotes": "off",
     "consistent-return": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".tsx"] }],
     "import/extensions": ["warn",{"js": "always", "css": "always", "mdx": "ignorePackages","png": "always", "jpeg": "always"}]
   }
 }
