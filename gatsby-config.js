@@ -143,8 +143,9 @@ module.exports = {
         defer: true,
       },
     },
-    (resolve: "gatsby-plugin-social-cards"),
-    (options: {
+    {
+resolve: "gatsby-plugin-social-cards",
+    options: {
       // ommit to skip
       authorImage: "./asets/photo.png",
       // image to use when no cover in frontmatter
@@ -152,6 +153,6 @@ module.exports = {
       defaultAuthor: "Matías Hernández A.",
       // card design
       design: "default", // 'default' or 'card'
-    }),
+    },
   ],
 };
