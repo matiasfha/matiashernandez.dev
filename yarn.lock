@@ -7225,6 +7225,11 @@ gatsby-plugin-sharp@2.6.18:
     svgo "1.3.2"
     uuid "^3.4.0"
 
+gatsby-plugin-social-cards@0.5.13:
+  version "0.5.13"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-social-cards/-/gatsby-plugin-social-cards-0.5.13.tgz#615a7fad651b6764506cebd8ed4b2e0d709a3da7"
+  integrity sha512-JIQHR7rqIfEVXwppRy0RjfLi2Gq186dI/QR/jEbJa2HwCKbmS66d5+jBX1Ekke1XMvGiIryXkwcRr1N3OInAZg==
+
 gatsby-plugin-styled-components@^3.3.0:
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-3.3.9.tgz#862c600bdeccc8cf1b172d91eae00dd407a665d4"
@@ -7232,10 +7237,10 @@ gatsby-plugin-styled-components@^3.3.0:
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-gatsby-plugin-twitter@2.3.9:
-  version "2.3.9"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-twitter/-/gatsby-plugin-twitter-2.3.9.tgz#24b8912d04c1676f6bb1edeb7b6217a7f35624f7"
-  integrity sha512-vJRkLzQgOdVocSp/+w6diUp4+sjA+NAsf1LNtPY7P3rzNpeaYxd6TcdQxpX4cDBX9eiK00zCzYR+/hOKaQLEHw==
+gatsby-plugin-twitter@2.3.10:
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-twitter/-/gatsby-plugin-twitter-2.3.10.tgz#1605b39385c475b234eafc422019cb36a7a14648"
+  integrity sha512-WQzjGpeKCdxujzAWE2yFOKaI494J/Qb6vhDdLvtevOAZVXSaMdTSfwSSUr17jsu8TV5s47fasKox+h/0uRlJUw==
   dependencies:
     "@babel/runtime" "^7.10.3"
 
