@@ -154,5 +154,6 @@ resolve: "gatsby-plugin-social-cards",
       // card design
       design: "default", // 'default' or 'card'
     },
+},
   ],
 };
