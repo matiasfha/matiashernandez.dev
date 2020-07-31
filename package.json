@@ -49,7 +49,7 @@
     "eslint-plugin-jest": "23.18.0",
     "formik": "2.1.4",
     "gatsby-plugin-catch-links": "2.3.10",
-    "gatsby-plugin-emotion": "4.3.9",
+    "gatsby-plugin-emotion": "4.3.10",
     "gatsby-plugin-react-helmet": "3.3.9",
     "gatsby-plugin-root-import": "2.0.5",
     "gatsby-plugin-sharp": "2.6.18",
