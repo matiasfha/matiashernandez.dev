@@ -24,9 +24,8 @@ const Seo = ({ frontmatter }) => {
     keywords,
     twitter,
     siteUrl: url,
-    image: logo,
+    image,
   } = site.siteMetadata;
-  const image = frontmatter.socialcard || logo;
   const title = frontmatter.title;
   return (
     <Helmet

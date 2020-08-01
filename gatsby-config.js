@@ -15,7 +15,6 @@ module.exports = {
     siteUrl: "https://www.matiashernandez.dev/",
     author: "Matias Hernandez",
     title: "Digital Garden de Matias Hernandez",
-    userTwitter: "@matiasfha", // Twitter Username
     ogSiteName: "Matias Hernandez A.", // Facebook Site Name
     ogLanguage: "es_CL",
     // Social component
@@ -143,16 +142,16 @@ module.exports = {
       },
     },
     {
-resolve: "gatsby-plugin-social-cards",
-    options: {
-      // ommit to skip
-      authorImage: "./asets/photo.png",
-      // image to use when no cover in frontmatter
-      // author to use when no auth in frontmatter
-      defaultAuthor: "Matías Hernández A.",
-      // card design
-      design: "default", // 'default' or 'card'
+      resolve: "gatsby-plugin-social-cards",
+      options: {
+        // ommit to skip
+        authorImage: "./assets/photo.png",
+        // image to use when no cover in frontmatter
+        // author to use when no auth in frontmatter
+        defaultAuthor: "Matías Hernández A.",
+        // card design
+        design: "default", // 'default' or 'card'
+      },
     },
-},
   ],
 };
