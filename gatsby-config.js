@@ -22,7 +22,7 @@ module.exports = {
     twitterHandle: "@matiasfha",
     github: "https://github.com/matiasfha/",
     linkedin: "https://www.linkedin.com/in/mhernand/",
-    image: "assets/photo.png",
+    image: "images/photo.png",
     description:
       "Hola! Soy Matias Hernandez. Ingeniero de Producto/Software, Podcaster e Instructor.",
     keywords: [
