@@ -23,10 +23,9 @@ module.exports = {
     twitterHandle: "@matiasfha",
     github: "https://github.com/matiasfha/",
     linkedin: "https://www.linkedin.com/in/mhernand/",
-    rss: "https://kentcdodds.com/blog/rss.xml",
-    image: "images/logo.png",
+    image: "assets/photo.png",
     description:
-      "Hola! Soy Matias Hernandez. Ingeniero de Product/Software, Podcaster e Instructor.",
+      "Hola! Soy Matias Hernandez. Ingeniero de Producto/Software, Podcaster e Instructor.",
     keywords: [
       "Software Engineer",
       "Product Engineer",
