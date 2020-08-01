@@ -172,7 +172,7 @@ export const GitHub = ({ color = `rgba(255,255,255,0.7)`, url }) => (
 const Footer = () => {
   const {
     site: {
-      siteMetadata: { twitter, rss, linkedin, github },
+      siteMetadata: { twitter, linkedin, github },
     },
   } = useStaticQuery(graphql`
     {
@@ -180,7 +180,6 @@ const Footer = () => {
         siteMetadata {
           twitter
           github
-          rss
           linkedin
         }
       }
