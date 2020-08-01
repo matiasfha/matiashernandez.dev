@@ -1,5 +1,5 @@
 ---
-date: 2020-07-29T15:14:38-04:00
+date: 2020-07-29T15:14:38.000-04:00
 banner: https://res.cloudinary.com/matiasfha/image/upload/v1596050181/ferenc-almasi-tvHtIGbbjMo-unsplash_kq9ukw.jpg
 keywords:
 - React
@@ -79,9 +79,68 @@ Entonces, si estas comenzando con React. Enfoca tu búsqueda de información en 
 
 Antes de la llegada oficial de Hooks la forma de construir aplicaciones con React estaba basada principalmente en el uso de clases y sus métodos de ciclos de vida. Los componentes funcionales o "stateless" eran incluso llamados "tontos" (dumb components) pues solo eran utilizados para renderizar partes de la UI sin realmente efectuar alguna acción dinámica, mas allá de representar el contenido de sus props.
 
-Hooks, presenta una forma distinta de manejar un componente, los métodos de ciclos de vida ya no existen o se han vuelto redundantes transformando la forma en que desarrollamos a un método más cercano a la programación funcional.   
-`React.useEffect` es el hook que se encarga de efectuar todas las mismas acciones que se podían hacer con los métodos de ciclo de vida, pero en realidad no es un reemplazo uno a uno de aquellos métodos, si no, una forma diferente de efectuar acciones sobre el component. 
+Hooks, presenta una forma distinta de manejar un componente, los métodos de ciclos de vida ya no existen o se han vuelto redundantes transformando la forma en que desarrollamos a un método más cercano a la programación funcional.  
+`React.useEffect` es el hook que se encarga de efectuar todas las mismas acciones que se podían hacer con los métodos de ciclo de vida, pero en realidad no es un reemplazo uno a uno de aquellos métodos, si no, una forma diferente de efectuar acciones sobre el component.
 
 He aquí el cambio de modelo mental, ahora ya no estamos escribiendo clases, estamos escribiendo funciones que tiene un método de efectuar side effects.
 
-**¿Cómo se definen los side effects?**
+Los "effects" están relacionados con el modelo mental que tenemos sobre el renderizado de un componente y cómo este se relaciona con su estado.
+
+Como ejemplo
+
+    const HideText = ({ text }) => {
+       const [isHide, setIsHide] = useState(false);
+       const onClick = () => {
+           setIsHide((prevState) => {
+               return !prevState
+    	   })
+       }
+       return (
+           <div>
+               <button onClick={onClick}>Toggle Hide</button>
+               {isHide? null : text}
+            </div>
+       )
+    }
+
+En este pequeño trozo de código ¿qué quiere decir el renderizado condicional? ¿el valor de `isHide` vigila los cambios que ocurren en el state? En general, al usar `useState` lo que se obtiene como primer valor es sólo eso, un valor, no hay data binding ni watchers, ni observables ni nada más. Sólo un valor, que en este caso es un boolean.
+
+Por cada click que se haga en el botón, se realiza una llamada a  `setIsHide`, es decir, un cambio en el estado y esto inicia un nuevo renderizado del componente. En cada una de estas nuevas llamadas al componente, `useState` retornará un nuevo valor a la variable `isHide`.
+
+Por cada cambio en el estado, React ejecuta una nueva llamada a la función con la que declaramos el componente, así, en cada ocasión un nuevo resultado es retornado por la llamada y en cada llamada un nuevo valor para `isHide` es visto por la función.
+
+Es así que esta linea `{isHide? null : text}` simplemente compara un valor constante y local `isHide` para definir si se renderiza o no el texto.
+
+Es decir, los valores retornados por `useState` son constantes dentro de un renderizado en particular, la variable no cambia en el tiempo, no es un stream continuo de datos, al contrario, es el componente que es llamado en varias ocasiones con un valor de estado distinto. Esto también es verdad para los manejadores de eventos (eventHandlers) que hagan uso del valor de estado. El manejador de eventos _pertenece_ a un renderizado en particular.
+
+Por extensión llegamos a los side effects.
+
+Para esto podemos usar un sencillo ejemplo
+
+    const TitleUpdater = () => {
+    	const [value, setValue] = useState('')
+        
+        useEffect(() => {
+        	document.title = value
+        })
+        
+        const handleChange = (event) => {
+        	setValue(event.target.value)
+        }
+        return (
+    	    <div>
+    		    <p>Ingresa el titulo</p>
+    	    	<input type="text" value={value} onChange={handleChange} />
+         	</div>
+        )
+    }
+
+Este ejemplo simplemente muestra un input que recibe un texto que se ve reflejado en el titulo del sitio. 
+
+Basados en el ejemplo anterior sabemos que `value `es un valor constante dentro de un momento/renderizado en particular, también sabemos que los manejadores de eventos pueden "ver" el estado de `value` dentro del render al que pertenecen, y esto mismo es verdad para los efectos.
+
+La función de efecto es una simple función que tiene acceso a los valores dentro de su scope, y esta es diferente en cada renderizado. En cada versión del rederizado la función de efecto _"ve"_  un valor distinto para la variable `value`.  
+  
+He aquí la diferencia en el modelo mental entre los métodos del ciclo de vida y hooks. Las funciones de efectos pertenecen a un renderizado en particular al igual que los manejadores de efectos, por lo tanto no es necesario que "reciban" valores especiales o existan "watchers" o "bindings" para acceder al estado.
+
+El nuevo modelo mental al utilizar efectos está más relacionado con la posibilidad de sincronizar las props y estado con alguna "cosa" fuera del árbol de componentes, como en el ejemplo anterior, el efecto modificaba el título del documento que está fuera del árbol de componentes pero se sincroniza con el estado del componente renderizado. Es completamente diferente al modelo anterior de `montar/actualizar/desmontar` intentar escribir un efecto que tiene diferentes comportamientos basados en el "momento" en que se encuentra es el camino errado.
