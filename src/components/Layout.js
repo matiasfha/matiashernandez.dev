@@ -73,10 +73,11 @@ const Layout = ({
   header = true,
   background = true,
   title,
+  pageContext,
 }) => {
   return (
     <Fragment>
-      <Seo title={title} />
+      <Seo title={title} frontmatter={frontmatter} />
       <Global styles={GlobalStyle} />
 
       <>
