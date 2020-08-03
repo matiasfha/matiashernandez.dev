@@ -22,7 +22,7 @@
     "gatsby-plugin-typography": "2.5.10",
     "gatsby-remark-copy-linked-files": "^2.3.1",
     "gatsby-remark-embedder": "2.1.2",
-    "gatsby-remark-images": "^3.3.0",
+    "gatsby-remark-images": "^3.3.24",
     "gatsby-remark-prismjs": "^3.5.0",
     "gatsby-remark-reading-time": "1.1.0",
     "gatsby-source-buzzsprout-api": "1.0.1",
