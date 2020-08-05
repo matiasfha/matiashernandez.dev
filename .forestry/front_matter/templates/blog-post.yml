@@ -60,6 +60,7 @@ fields:
   label: Tag
   description: Tag for the garden
 pages:
+- content/posts/algunos-errores-comunes-al-utilizar-react-hooks.mdx
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
 - content/posts/measuring-your-react-app-performance.mdx
 - content/posts/que-son-los-hooks.mdx
