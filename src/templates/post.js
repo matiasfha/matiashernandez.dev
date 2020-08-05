@@ -89,6 +89,11 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
                 p {
                   margin-bottom: 0;
                 }
+                span {
+                  font-size: 12px;
+                  font-family: ${fonts.light};
+                  float: right;
+                }
               `}
             >
               <Img
@@ -98,7 +103,9 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
                 fluid={banner.childImageSharp.fluid}
                 alt={title}
               />
-              {bannerCredit ? <Markdown>{bannerCredit}</Markdown> : null}
+              {bannerCredit ? (
+                <div dangerouslySetInnerHTML={{ __html: bannerCredit }} />
+              ) : null}
             </div>
           )}
 
@@ -157,6 +164,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        bannerCredit
         banner {
           childImageSharp {
             fluid(maxHeight: 300) {
