@@ -6,12 +6,11 @@ const shouldTransform = (url) => {
   return host === "egghead.io" && pathname.includes("/lessons/");
 };
 
-//http://egghead.io/lessons/gatsby-crear-un-plugin-de-gatsby-para-consumir-datos-de-una-api-externa
 const getHTML = (url) => {
   const lessonId = new URL(url).pathname.replace(/\/lessons\//, "");
   return `
     <div style="position: relative;">
-      <EggheadLesson lessonId={${lessonId}} />
+      <EggheadLesson lessonId="${lessonId}?af=4cexzz" />
     </div>
   `;
 };

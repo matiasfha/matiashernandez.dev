@@ -15,13 +15,14 @@ const PostsContainer = styled.div`
   }
 `;
 
-const PostCard = styled(Link)`
+const PostCard = styled.div`
   position: relative;
   width: 100%;
   background: white;
   margin: 0 auto;
   flex-direction: column;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: center;
   text-decoration: none;
   background-image: url(${(props) => props.background});
@@ -51,16 +52,17 @@ const PostContentContainer = styled.div`
   background: transparent;
   padding: 1rem;
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 120px 1fr;
   justify-content: space-between;
 `;
 
-const PostTitle = styled.h3`
+const PostTitle = styled(Link)`
   margin-bottom: 0;
   font-size: 22px;
   font-family: ${fonts.light};
   color: white;
   text-decoration: none;
+  display: block;
 `;
 
 const TimeToRead = styled.span`
@@ -69,7 +71,7 @@ const TimeToRead = styled.span`
   color: white;
 `;
 
-const Description = styled.div`
+const Description = styled(Link)`
   width: 100%;
   font-family: ${fonts.regular};
   font-size: 12px;
@@ -122,20 +124,21 @@ const PostsSection = ({ posts, content = null }) => {
         {posts.map(({ node: post }) => (
           <PostCard
             key={post.id}
-            to={post.fields.slug}
             aria-label={`View ${post.frontmatter.title}`}
             background={post.frontmatter.banner.childImageSharp.fluid.src}
           >
             <PostOverlay />
             <PostContentContainer>
               <div>
-                <PostTitle>{post.frontmatter.title}</PostTitle>
+                <PostTitle to={post.fields.slug}>
+                  {post.frontmatter.title}
+                </PostTitle>
                 <TimeToRead>{post.fields.readingTime.text}</TimeToRead>
                 <Tag value={post.frontmatter.tag.toLowerCase()}>
                   {post.frontmatter.tag}
                 </Tag>
               </div>
-              <Description>
+              <Description to={post.fields.slug}>
                 {post.frontmatter.description ? (
                   <Markdown>{post.frontmatter.description}</Markdown>
                 ) : null}
