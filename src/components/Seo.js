@@ -26,9 +26,9 @@ const Seo = ({ title, frontmatter }) => {
     siteUrl: url,
     image,
   } = site.siteMetadata;
-  const postTitle = frontmatter.title;
-  const postImage = frontmatter.banner.childImageSharp.fluid.src;
-  const postDescription = frontmatter.description;
+  const postTitle = frontmatter?.title;
+  const postImage = frontmatter?.banner?.childImageSharp.fluid.src;
+  const postDescription = frontmatter?.description;
 
   let metaTitle = siteTitle;
   if (postTitle) {
