@@ -153,5 +153,6 @@ module.exports = {
         design: "default", // 'default' or 'card'
       },
     },
+    `gatsby-plugin-advanced-sitemap`,
   ],
 };

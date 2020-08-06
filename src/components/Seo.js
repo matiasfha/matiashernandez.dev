@@ -26,30 +26,49 @@ const Seo = ({ title, frontmatter }) => {
     siteUrl: url,
     image,
   } = site.siteMetadata;
+  const postTitle = frontmatter.title;
+  const postImage = frontmatter.banner.childImageSharp.fluid.src;
+  const postDescription = frontmatter.description;
+
+  let metaTitle = siteTitle;
+  if (postTitle) {
+    metaTitle = postTitle;
+  }
+  let metaDescription = description;
+  if (postDescription) {
+    metaDescription = `${postDescription.substring(0, 157)}...`;
+  }
+
+  let metaImage = image;
+  if (postImage) {
+    metaImage = postImage;
+  }
   return (
     <Helmet
-      title={title || siteTitle}
+      title={metaTitle}
       meta={[
-        { name: "description", content: description },
-        { name: "keywords", content: keywords },
+        { name: "description", content: metaDescription },
+        { name: "keywords", content: frontmatter.keywords || keywords },
       ]}
     >
       <html lang="en" />
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <title>
+        {siteTitle} | {metaTitle}
+      </title>
+      <meta name="description" content={metaDescription} />
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
+      <meta property="og:title" content={`${siteTitle} | ${metaTitle}`} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:image" content={metaImage} />
       {/*<meta property="fb:app_id" content={seo.social.fbAppID} />*/}
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitter} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image} />
+      <meta name="twitter:title" content={`${siteTitle} | ${metaTitle}`} />
+      <meta name="twitter:description" content={metaDescription} />
+      <meta name="twitter:image" content={metaImage} />
       <noscript>This site runs best with JavaScript enabled.</noscript>
     </Helmet>
   );
