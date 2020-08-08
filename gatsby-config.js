@@ -3,14 +3,21 @@ require("dotenv").config({
   path: `.env`,
 });
 
-const BUZZSPROUT_TOKEN = process.env.BUZZSPROUT_TOKEN;
+const baseUrl = "https://www.matiashernandez.dev";
+const title = "Digital Garden de Matias Hernandez";
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = baseUrl,
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+  BUZZSPROUT_TOKEN,
+} = process.env;
+const isNetlifyProduction = NETLIFY_ENV === "production";
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
 const eggheadTransformer = require("./embedder-transformers/egghead");
 const codesandboxTransformer = require("./embedder-transformers/codesandbox");
 const buzzsproutTransformer = require("./embedder-transformers/buzzsprout");
-
-const siteUrl = "https://www.matiashernandez.dev";
-const title = "Digital Garden de Matias Hernandez";
 
 module.exports = {
   pathPrefix: "/",
@@ -40,7 +47,7 @@ module.exports = {
     twitterHandle: "@matiasfha",
     github: "https://github.com/matiasfha/",
     linkedin: "https://www.linkedin.com/in/mhernand/",
-    image: "images/photo.png",
+    image: "/images/photo.png",
     description:
       "Hola! Soy Matias Hernandez. Ingeniero de Producto/Software, Podcaster e Instructor.",
     keywords: [

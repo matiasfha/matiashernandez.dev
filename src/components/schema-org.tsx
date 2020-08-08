@@ -40,6 +40,15 @@ export default React.memo(
         url,
         name: title,
         alternateName: defaultTitle,
+        sameAs: [
+          "https://twitter.com/matiasfha",
+          "https://twitter.com/cafe_contech",
+          "https://twitter.com/ControlRemoto7",
+          "https://instagram.com/matiasfha",
+          "https://instagram.com/cafe_contech",
+          "https://instagram.com/controlremoto_podcast",
+          "https://linkedin.com/in/mhernand",
+        ],
       },
     ];
 

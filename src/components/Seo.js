@@ -51,6 +51,7 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
   if (title) {
     realTitle = `${title} | ${siteTitle}`;
   }
+  const datePublished = isBlogPost ? frontmatter.date : null;
   return (
     <Helmet
       title={realTitle}
@@ -66,7 +67,7 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
       <meta property="og:url" content={url} />
       <meta property="og:title" content={realTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={`${seo.canonicalUrl}/${metaImage}`} />
+      <meta property="og:image" content={`${seo.canonicalUrl}${metaImage}`} />
       {isBlogPost ? (
         <meta property="og:type" content="article" />
       ) : (
@@ -80,13 +81,13 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
       <meta name="twitter:creator" content={twitter} />
       <meta name="twitter:title" content={realTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={`${seo.canonicalUrl}/${metaImage}`} />
-
+      <meta name="twitter:image" content={`${seo.canonicalUrl}${metaImage}`} />
       <SchemaOrg
         isBlogPost={isBlogPost}
         url={url}
         title={title}
-        image={`${seo.canonicalUrl}/${metaImage}`}
+        image={`${seo.canonicalUrl}${metaImage}`}
+        datePublished={datePublished}
         description={description}
         canonicalUrl={seo.canonicalUrl}
         author={seo.author}
