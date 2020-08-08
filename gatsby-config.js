@@ -51,6 +51,12 @@ module.exports = {
     description:
       "Hola! Soy Matias Hernandez. Ingeniero de Producto/Software, Podcaster e Instructor.",
     keywords: [
+      "Javascript",
+      "React",
+      "hooks",
+      "es6",
+      "egghead",
+      "tutoriales",
       "Software Engineer",
       "Product Engineer",
       "Web Developer",

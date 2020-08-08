@@ -60,9 +60,13 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
         { name: "keywords", content: frontmatter.keywords || keywords },
       ]}
     >
-      <html lang="en" />
+      <html lang="es" />
       <title>{realTitle}</title>
       <meta name="description" content={metaDescription} />
+      <meta
+        name="keywords"
+        content={`${keywords.join(",")},${frontmatter.keywords?.join(",")}`}
+      />
       {/* OpenGraph tags */}
       <meta property="og:url" content={url} />
       <meta property="og:title" content={realTitle} />
@@ -80,6 +84,7 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitter} />
       <meta name="twitter:title" content={realTitle} />
+      <meta name="twitter:site" content={url} />
       <meta name="twitter:description" content={metaDescription} />
       <meta name="twitter:image" content={`${seo.canonicalUrl}${metaImage}`} />
       <SchemaOrg

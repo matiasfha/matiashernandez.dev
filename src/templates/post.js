@@ -10,7 +10,6 @@ import { bpMaxSM } from "@/lib/breakpoints";
 import SharePost from "@/components/SharePost";
 import { fonts } from "@/lib/typography";
 import Layout from "@/components/Layout";
-import Seo from "@/components/Seo";
 import photo from "../../assets/photo.png";
 
 const PostTitle = styled.h1`
@@ -74,83 +73,81 @@ export default function Post({
   const { minibio } = site.siteMetadata.seo.author;
   const { slug } = mdx.fields;
   return (
-    <>
-      <Seo frontmatter={mdx.frontmatter} />
-      <Layout
-        frontmatter={mdx.frontmatter}
-        header={false}
-        title={title}
-        background={false}
-      >
-        <Article>
-          <PostTitle>{title}</PostTitle>
+    <Layout
+      frontmatter={mdx.frontmatter}
+      header={false}
+      title={title}
+      background={false}
+      isBlogPost
+    >
+      <Article>
+        <PostTitle>{title}</PostTitle>
 
-          {banner && (
-            <div
-              css={css`
-                text-align: center;
-                padding: 0 0 2rem;
-                p {
-                  margin-bottom: 0;
-                }
-                span {
-                  font-size: 12px;
-                  font-family: ${fonts.light};
-                  float: right;
-                }
-              `}
-            >
-              <Img
-                css={css`
-                  max-height: 300px;
-                `}
-                fluid={banner.childImageSharp.fluid}
-                alt={title}
-              />
-              {bannerCredit ? (
-                <div dangerouslySetInnerHTML={{ __html: bannerCredit }} />
-              ) : null}
-            </div>
-          )}
-
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </Article>
-        <time
-          css={{
-            textAlign: "right",
-            display: "block",
-            fontSize: "12px",
-          }}
-          title="Last Updated Date"
-        >
-          {date}
-        </time>
-        <pre
-          css={{
-            textAlign: "right",
-            marginBottom: 0,
-          }}
-        >
-          <EditLink
-            href={`https://github.com/matiasfha/matiashernandez.dev/tree/master/content/posts/${slug}.mdx`}
-          >
-            Edita esto en github
-          </EditLink>
-        </pre>
-        <SharePost url={`https://matiashernandez.dev/${slug}`} title={title} />
-        <Footer>
-          <img
-            src={photo}
-            alt="Matias Hernandez A."
+        {banner && (
+          <div
             css={css`
-              border-radius: 50%;
-              max-width: 80px;
+              text-align: center;
+              padding: 0 0 2rem;
+              p {
+                margin-bottom: 0;
+              }
+              span {
+                font-size: 12px;
+                font-family: ${fonts.light};
+                float: right;
+              }
             `}
-          />
-          <p>{minibio}</p>
-        </Footer>
-      </Layout>
-    </>
+          >
+            <Img
+              css={css`
+                max-height: 300px;
+              `}
+              fluid={banner.childImageSharp.fluid}
+              alt={title}
+            />
+            {bannerCredit ? (
+              <div dangerouslySetInnerHTML={{ __html: bannerCredit }} />
+            ) : null}
+          </div>
+        )}
+
+        <MDXRenderer>{mdx.body}</MDXRenderer>
+      </Article>
+      <time
+        css={{
+          textAlign: "right",
+          display: "block",
+          fontSize: "12px",
+        }}
+        title="Last Updated Date"
+      >
+        {date}
+      </time>
+      <pre
+        css={{
+          textAlign: "right",
+          marginBottom: 0,
+        }}
+      >
+        <EditLink
+          href={`https://github.com/matiasfha/matiashernandez.dev/tree/master/content/posts/${slug}.mdx`}
+        >
+          Edita esto en github
+        </EditLink>
+      </pre>
+      <SharePost url={`https://matiashernandez.dev/${slug}`} title={title} />
+      <Footer>
+        <img
+          src={photo}
+          alt="Matias Hernandez A."
+          css={css`
+            border-radius: 50%;
+            max-width: 80px;
+          `}
+        />
+        <p>{minibio}</p>
+      </Footer>
+    </Layout>
   );
 }
 

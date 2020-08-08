@@ -24,13 +24,20 @@ const PodcastsContainer = styled.div`
   }
 `;
 
+const H1 = styled.h2`
+  color: rgb(4, 67, 172);
+  font-family: Phosphate;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 2rem;
+`;
 const PodcastSection = ({ cafeConTech, controlRemoto }) => (
   <>
-    <h1>Podcasts</h1>
+    <H1>Podcasts</H1>
     <PodcastsContainer>
       <PodcastCard
         episodes={cafeConTech.nodes}
-        title="Cafe con Tech"
+        title="Café con Tech"
         image={CafeConTechLogo}
         background={CafeConTechBG}
       />

@@ -3,6 +3,14 @@ import styled from "@emotion/styled";
 import { EggheadLesson } from "@pauliescanlon/gatsby-mdx-embed";
 import { bpMaxSM } from "@/lib/breakpoints";
 
+const H1 = styled.h2`
+  color: rgb(4, 67, 172);
+  font-family: Phosphate;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 2rem;
+`;
+
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -40,7 +48,7 @@ const Title = styled.a`
 const EggheadSection = () => {
   return (
     <>
-      <h1>Ultimos Videos en Egghead</h1>
+      <H1>Últimos Videos en Egghead</H1>
       <Container>
         <Column>
           <Title

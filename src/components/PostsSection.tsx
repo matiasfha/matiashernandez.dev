@@ -110,6 +110,14 @@ const Tag = styled.div<{ value: string }>`
   }}
 `;
 
+const H1 = styled.h2`
+  color: rgb(4, 67, 172);
+  font-family: Phosphate;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  font-size: 2rem;
+`;
+
 interface Post {
   id: string;
   fields: {
@@ -139,7 +147,7 @@ interface Props {
 const PostsSection: React.FC<Props> = ({ posts }: Props) => {
   return (
     <>
-      <h1>My digital garden</h1>
+      <H1>My digital garden</H1>
       <p>
         Un digital garden/jardín digital es un espacio digital lleno de ideas
         interconectadas e información recolectada, curada y siempre en progreso
