@@ -1,15 +1,22 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
+import SchemaOrg from "./schema-org";
 
-const Seo = ({ title, frontmatter }) => {
+const Seo = ({ title, frontmatter, isBlogPost }) => {
   const { site } = useStaticQuery(graphql`
     {
       site {
         siteMetadata {
+          seo {
+            canonicalUrl
+            title
+            author {
+              name
+            }
+          }
           title
           description
-          author
           keywords
           twitter
           siteUrl
@@ -25,6 +32,7 @@ const Seo = ({ title, frontmatter }) => {
     twitter,
     siteUrl: url,
     image,
+    seo,
   } = site.siteMetadata;
   const postTitle = frontmatter?.title;
   const postImage = frontmatter?.banner?.childImageSharp.fluid.src;
@@ -58,7 +66,13 @@ const Seo = ({ title, frontmatter }) => {
       <meta property="og:url" content={url} />
       <meta property="og:title" content={realTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={metaImage} />
+      <meta property="og:image" content={`${seo.canonicalUrl}/${metaImage}`} />
+      {isBlogPost ? (
+        <meta property="og:type" content="article" />
+      ) : (
+        <meta property="og:type" content="website" />
+      )}
+      <meta property="og:site_name" content={siteTitle} />
       {/*<meta property="fb:app_id" content={seo.social.fbAppID} />*/}
 
       {/* Twitter Card tags */}
@@ -66,7 +80,19 @@ const Seo = ({ title, frontmatter }) => {
       <meta name="twitter:creator" content={twitter} />
       <meta name="twitter:title" content={realTitle} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={metaImage} />
+      <meta name="twitter:image" content={`${seo.canonicalUrl}/${metaImage}`} />
+
+      <SchemaOrg
+        isBlogPost={isBlogPost}
+        url={url}
+        title={title}
+        image={`${seo.canonicalUrl}/${metaImage}`}
+        description={description}
+        canonicalUrl={seo.canonicalUrl}
+        author={seo.author}
+        organization={seo.organization}
+        defaultTitle={seo.title}
+      />
       <noscript>This site runs best with JavaScript enabled.</noscript>
     </Helmet>
   );

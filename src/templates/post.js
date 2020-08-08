@@ -66,8 +66,12 @@ const EditLink = styled.a`
   text-decoration: none;
 `;
 
-export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
+export default function Post({
+  data: { mdx, site },
+  pageContext: { next, prev },
+}) {
   const { date, title, banner, bannerCredit } = mdx.frontmatter;
+  const { minibio } = site.siteMetadata.seo.author;
   const { slug } = mdx.fields;
   return (
     <>
@@ -143,11 +147,7 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
               max-width: 80px;
             `}
           />
-          <p>
-            <strong>Matias Hernandez A.</strong>
-            {` Ingeniero de Producto/Software Chileno. Ha escrito cientos de lineas de código para diversas compañias y clientes en EE.UU y Europa construyendo diversos productos.
-              `}
-          </p>
+          <p>{minibio}</p>
         </Footer>
       </Layout>
     </>
@@ -156,6 +156,15 @@ export default function Post({ data: { mdx }, pageContext: { next, prev } }) {
 
 export const pageQuery = graphql`
   query($id: String!) {
+    site {
+      siteMetadata {
+        seo {
+          author {
+            minibio
+          }
+        }
+      }
+    }
     mdx(fields: { id: { eq: $id } }) {
       fields {
         slug

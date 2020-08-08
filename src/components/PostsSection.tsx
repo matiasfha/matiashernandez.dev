@@ -15,7 +15,10 @@ const PostsContainer = styled.div`
   }
 `;
 
-const PostCard = styled.div`
+interface PostCardProps {
+  background: string;
+}
+const PostCard = styled.div<PostCardProps>`
   position: relative;
   width: 100%;
   background: white;
@@ -84,7 +87,7 @@ const Description = styled(Link)`
   }
 `;
 
-const Tag = styled.div`
+const Tag = styled.div<{ value: string }>`
   display: block;
   font-size: 0.8rem;
   width: 50px;
@@ -107,40 +110,66 @@ const Tag = styled.div`
   }}
 `;
 
-const PostsSection = ({ posts, content = null }) => {
+interface Post {
+  id: string;
+  fields: {
+    slug: string;
+    readingTime: {
+      text: string;
+    };
+  };
+  frontmatter: {
+    title: string;
+    tag: string;
+    description: string;
+    banner: {
+      childImageSharp: {
+        fluid: {
+          src: string;
+        };
+      };
+    };
+  };
+}
+interface Props {
+  posts: Array<{
+    node: Post;
+  }>;
+}
+const PostsSection: React.FC<Props> = ({ posts }: Props) => {
   return (
     <>
       <h1>My digital garden</h1>
       <p>
-        Un jardín digital es un espacio digital lleno de ideas interconectadas e
-        información recolectada, curada y siempre en progreso durante el tiempo.
-        Esto implica que dentro de este espacio existira contenido que aún no
-        "florece" o incluso que se encuentra en esetado de semilla o
-        germinación. Un conjunto de ideas que se mantienen en progreso. Estará
-        enfocado en Javascript, React y desarrollo web en general.
+        Un digital garden/jardín digital es un espacio digital lleno de ideas
+        interconectadas e información recolectada, curada y siempre en progreso
+        durante el tiempo. Esto implica que dentro de este espacio existira
+        contenido que aún no "florece" o incluso que se encuentra en esetado de
+        semilla o germinación. Un conjunto de ideas que se mantienen en
+        progreso. Estará enfocado en Javascript, React y desarrollo web en
+        general.
       </p>
-      {content}
       <PostsContainer>
-        {posts.map(({ node: post }) => (
+        {posts.map(({ node }: { node: Post }) => (
           <PostCard
-            key={post.id}
-            aria-label={`View ${post.frontmatter.title}`}
-            background={post.frontmatter.banner.childImageSharp.fluid.src}
+            key={node.id}
+            aria-label={`View ${node.frontmatter.title}`}
+            background={node.frontmatter.banner.childImageSharp.fluid.src}
           >
             <PostOverlay />
             <PostContentContainer>
               <div>
-                <PostTitle to={post.fields.slug}>
-                  {post.frontmatter.title}
+                <PostTitle to={node.fields.slug} title={node.frontmatter.title}>
+                  {node.frontmatter.title}
                 </PostTitle>
-                <TimeToRead>{post.fields.readingTime.text}</TimeToRead>
-                <Tag value={post.frontmatter.tag.toLowerCase()}>
-                  {post.frontmatter.tag}
+                <TimeToRead>{node.fields.readingTime.text}</TimeToRead>
+                <Tag value={node.frontmatter.tag.toLowerCase()}>
+                  {node.frontmatter.tag}
                 </Tag>
               </div>
-              <Description to={post.fields.slug}>
-                {post.frontmatter.description ? (
-                  <Markdown>{post.frontmatter.description}</Markdown>
+              <Description to={node.fields.slug} title={node.frontmatter.title}>
+                {node.frontmatter.description ? (
+                  <Markdown>{node.frontmatter.description}</Markdown>
                 ) : null}
               </Description>
             </PostContentContainer>

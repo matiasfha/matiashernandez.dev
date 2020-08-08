@@ -102,6 +102,7 @@ type PodcastCardProps = {
     slug: string;
     podcastName: string;
     title: string;
+    audio_url: string;
     remoteImage: {
       childImageSharp: {
         fluid: any;
@@ -110,14 +111,14 @@ type PodcastCardProps = {
   }>;
   title: string;
   image: string;
-  background: sring;
+  background: string;
 };
 const PodcastCard: React.FC<PodcastCardProps> = ({
   episodes,
   title,
   image,
   background,
-}) => (
+}: PodcastCardProps) => (
   <PodcastColumn>
     <PodcastHeader background={background} />
     <PodcastContent>
@@ -130,9 +131,13 @@ const PodcastCard: React.FC<PodcastCardProps> = ({
           <PodcastEpisode
             key={item.id}
             href={item.audio_url.split(".").slice(0, -1).join(".")}
+            title={item.title}
           >
             <h4>{item.title}</h4>
-            <PodcastImg fluid={item.remoteImage.childImageSharp.fluid} />
+            <PodcastImg
+              fluid={item.remoteImage.childImageSharp.fluid}
+              alt={item.title}
+            />
           </PodcastEpisode>
         ))}
       </PodcastEpisodes>

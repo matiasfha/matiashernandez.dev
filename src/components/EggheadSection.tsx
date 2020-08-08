@@ -43,13 +43,19 @@ const EggheadSection = () => {
       <h1>Ultimos Videos en Egghead</h1>
       <Container>
         <Column>
-          <Title href="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme?af=4cexzz">
+          <Title
+            href="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme?af=4cexzz"
+            title="Personaliza tu perfil en Githuuub con el nuevo README"
+          >
             Pesonaliza tu perfil en Github con el nuevo README
           </Title>
           <EggheadLesson lessonId="egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme" />
         </Column>
         <Column>
-          <Title href="https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?af=4cexzz">
+          <Title
+            href="https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?af=4cexzz"
+            title="Crear un componente Wizard usando useState React hooks"
+          >
             Crear un componente Wizard usando useState React hooks
           </Title>
           <EggheadLesson lessonId="react-crear-un-componente-wizard-usando-usestate-react-hooks" />

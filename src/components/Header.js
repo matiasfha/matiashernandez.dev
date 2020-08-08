@@ -28,9 +28,28 @@ const HeroContainer = styled.section`
     grid-template-areas: "copy";
   }
 `;
-
-const Copy = styled.h1`
+const TitleContainer = styled.div`
   grid-area: copy;
+`;
+const Title = styled.h1`
+  font-size: 23px;
+  color: white;
+  position: relative;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: normal;
+  font-family: ${fonts.semibold};
+  align-self: start;
+  ${bpTabletOnly} {
+    font-size: 18px;
+    align-self: start;
+  }
+  ${bpMaxSM} {
+    font-size: 16px;
+    align-self: start;
+  }
+`;
+const SubTitle = styled.h2`
   font-size: 23px;
   color: white;
   position: relative;
@@ -178,12 +197,13 @@ const Header = () => {
           </div>
         </Nav>
         <HeroContainer>
-          <Copy>
-            Hola! Soy Matias.
-            <br />
-            Bienvenido a mi jardin digital, en donde comparto contenido para
-            ayudar a otros a escribir mejores productos
-          </Copy>
+          <TitleContainer>
+            <Title>Hola! Soy Matias.</Title>
+            <SubTitle>
+              Bienvenido a mi digital garden, en donde comparto contenido para
+              ayudar a otros desarrolladores a escribir mejores productos
+            </SubTitle>
+          </TitleContainer>
           <Image src={Photo} alt="Matias Hernandez" />
         </HeroContainer>
       </Container>

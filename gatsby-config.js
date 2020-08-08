@@ -9,12 +9,30 @@ const eggheadTransformer = require("./embedder-transformers/egghead");
 const codesandboxTransformer = require("./embedder-transformers/codesandbox");
 const buzzsproutTransformer = require("./embedder-transformers/buzzsprout");
 
+const siteUrl = "https://www.matiashernandez.dev";
+const title = "Digital Garden de Matias Hernandez";
+
 module.exports = {
   pathPrefix: "/",
   siteMetadata: {
-    siteUrl: "https://www.matiashernandez.dev/",
-    author: "Matias Hernandez",
-    title: "Digital Garden de Matias Hernandez",
+    siteUrl,
+    seo: {
+      canonicalUrl: siteUrl,
+      organization: {
+        name: "Matias Hernandez Tech LLC",
+        url: siteUrl,
+        logo: "images/logo.png",
+      },
+      title,
+      author: {
+        name: "Matias Hernandez A.",
+        minibio: `
+            <strong>Matias Hernandez A.</strong>
+            Ingeniero de Producto/Software Chileno. Ha escrito cientos de lineas de código para diversas compañias y clientes en EE.UU y Europa construyendo diversos productos.
+      `,
+      },
+    },
+    title,
     ogSiteName: "Matias Hernandez A.", // Facebook Site Name
     ogLanguage: "es_CL",
     // Social component
@@ -154,5 +172,26 @@ module.exports = {
       },
     },
     `gatsby-plugin-advanced-sitemap`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: "*" }],
+          },
+          "branch-deploy": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null,
+          },
+          "deploy-preview": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null,
+          },
+        },
+      },
+    },
   ],
 };
