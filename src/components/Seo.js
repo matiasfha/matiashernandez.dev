@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import SchemaOrg from "./schema-org";
+import socialCard from "./socialCard";
 
 const Seo = ({ title, frontmatter, isBlogPost }) => {
   const { site } = useStaticQuery(graphql`
@@ -52,6 +53,10 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
     realTitle = `${title} | ${siteTitle}`;
   }
   const datePublished = isBlogPost ? frontmatter.date : null;
+  const ogImage = socialCard({
+    title: isBlogPost ? title : siteTitle,
+    description: metaDescription,
+  });
   return (
     <Helmet
       title={realTitle}
@@ -71,7 +76,6 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
       <meta property="og:url" content={url} />
       <meta property="og:title" content={realTitle} />
       <meta property="og:description" content={metaDescription} />
-      <meta property="og:image" content={`${seo.canonicalUrl}${metaImage}`} />
       {isBlogPost ? (
         <meta property="og:type" content="article" />
       ) : (
@@ -81,12 +85,17 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
       {/*<meta property="fb:app_id" content={seo.social.fbAppID} />*/}
 
       {/* Twitter Card tags */}
-      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={twitter} />
       <meta name="twitter:title" content={realTitle} />
       <meta name="twitter:site" content={url} />
       <meta name="twitter:description" content={metaDescription} />
-      <meta name="twitter:image" content={`${seo.canonicalUrl}${metaImage}`} />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="image" content={ogImage} />
+      <meta itemProp="image" content={ogImage} />
+      <meta name="twitter:image" content={ogImage} />
+      <meta property="og:image" content={ogImage} />
+
       <SchemaOrg
         isBlogPost={isBlogPost}
         url={url}
