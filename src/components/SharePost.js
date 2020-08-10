@@ -32,7 +32,7 @@ const SharePost = ({ url, title }) => (
     <Line />
     <Text>
       Comparte en
-      <TwitterShareButton url={url} title={title} via="@matiasfha">
+      <TwitterShareButton url={url} title={title} via="matiasfha">
         <Twitter />
       </TwitterShareButton>
       <LinkedinShareButton

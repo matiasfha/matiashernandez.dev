@@ -198,7 +198,7 @@ const Header = () => {
         </Nav>
         <HeroContainer>
           <TitleContainer>
-            <Title>Hola! Soy Matias.</Title>
+            <Title>Hola! Soy Matias Hernández A.</Title>
             <SubTitle>
               Bienvenido a mi digital garden, en donde comparto contenido para
               ayudar a otros desarrolladores a escribir mejores productos
