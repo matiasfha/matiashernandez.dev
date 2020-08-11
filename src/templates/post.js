@@ -4,7 +4,6 @@ import Img from "gatsby-image";
 import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
-import Markdown from "react-markdown";
 
 import { bpMaxSM } from "@/lib/breakpoints";
 import SharePost from "@/components/SharePost";
@@ -65,10 +64,7 @@ const EditLink = styled.a`
   text-decoration: none;
 `;
 
-export default function Post({
-  data: { mdx, site },
-  pageContext: { next, prev },
-}) {
+export default function Post({ data: { mdx, site } }) {
   const { date, title, banner, bannerCredit } = mdx.frontmatter;
   const { minibio } = site.siteMetadata.seo.author;
   const { slug } = mdx.fields;
@@ -145,7 +141,7 @@ export default function Post({
             max-width: 80px;
           `}
         />
-        <p>{minibio}</p>
+        <p dangerouslySetInnerHTML={{ __html: minibio }} />
       </Footer>
     </Layout>
   );

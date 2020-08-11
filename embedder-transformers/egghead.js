@@ -10,7 +10,7 @@ const getHTML = (url) => {
   const lessonId = new URL(url).pathname.replace(/\/lessons\//, "");
   return `
     <div style="position: relative;">
-      <EggheadLesson lessonId="${lessonId}?af=4cexzz" />
+      <EggheadLesson lessonId="${lessonId}" />
     </div>
   `;
 };
