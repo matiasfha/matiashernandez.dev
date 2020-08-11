@@ -24,7 +24,7 @@ bannerCredit: <span>Photo by <a href="https://unsplash.com/@draufsicht?utm_sourc
 La manipulación de arreglos es una de las tareas más comunes y constantes a la hora de desarrollar una aplicación. Los arreglos son estructuras de datos básicas en cualquier programa. Una de estas tareas de manipulación es la de remover elementos duplicados de un arreglo.  
 Javascript, por su naturaleza flexible, ofrece variadas formas de efectuar esta tarea y la elección de cuál utilizar corresponde tanto a la experiencia del desarrollador como al caso de uso.
 
-#### **TLDR;** Lección en video en [egghead.io](https://egghead.io/lessons/javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript?pl=manipulacion-de-arreglos-con-javascript-12bd?af=4cexzz)
+#### **TLDR;** Lección en video en \[egghead.io\]
 
 https://egghead.io/lessons/javascript-4-formas-de-remover-elementos-duplicados-de-un-arreglo-con-javascript?pl=manipulacion-de-arreglos-con-javascript-12bd?af=4cexzz
 
@@ -63,7 +63,6 @@ Es posible iterar sobre los elementos en el orden de inserción.
     let result = [...dataArr];
     
     console.log(result); //[1,2,6,5,9,'33']
-    
 
 El caso de utilizar **Set** para remover duplicados es bastante simple, creamos un nuevo **Set** basado en el arreglo original utilizando _new Set_.
 
@@ -89,8 +88,6 @@ El método `Array.reduce` también puede ser utilizado con el mismo propósito.
     },[])
     
     console.log(result); //[1,2,6,5,9,'33']
-    
-    
 
 En este caso la función utilizada simplemente revisa si el item actual se encuentra dentro del resultado identificado por la variable `acc`, de no estarlo, simplemente agrega el valor al acumulador
 
