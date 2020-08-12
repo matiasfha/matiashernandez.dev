@@ -63,7 +63,7 @@ const PodcastHeader = styled.div<{ background: string }>`
 `;
 const PodcastContent = styled.div`
   display: grid;
-  grid-template-rows: 1fr 3fr;
+  grid-template-rows: 1fr 2fr;
   grid-template-areas:
     "header"
     "content";
@@ -94,6 +94,7 @@ const PodcastEpisodes = styled.div`
   display: grid;
   grid-gap: 10px;
   grid-template-rows: 100px 1fr;
+  padding-bottom: 0.5rem;
 `;
 
 type PodcastCardProps = {

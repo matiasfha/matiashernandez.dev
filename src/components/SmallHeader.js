@@ -11,12 +11,11 @@ const HeaderContainer = styled.header`
   margin: 0;
 
   display: grid;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "left content right";
 
-  padding: 1rem;
   background-image: ${(props) =>
     props.background
       ? `linear-gradient(
@@ -38,7 +37,9 @@ const HeaderContainer = styled.header`
   color: white;
   font-family: ${fonts.regular};
   ${bpTabletOnly} {
-    height: 15rem;
+    grid-template-columns: 1fr;
+    grid-template-areas: "hero";
+    padding: 0.5rem;
   }
   ${bpMaxSM} {
     font-size: 14px;
@@ -55,6 +56,9 @@ const Nav = styled.nav`
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: start;
+  ${bpTabletOnly} {
+    grid-area: hero;
+  }
   ${bpMaxSM} {
     grid-area: hero;
   }

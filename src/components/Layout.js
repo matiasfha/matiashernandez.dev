@@ -7,7 +7,7 @@ import SmallHeader from "@/components/SmallHeader";
 import Footer from "@/components/Footer";
 import Seo from "@/components/Seo";
 import { fonts } from "@/lib/typography";
-import { bpMaxSM } from "@/lib/breakpoints";
+import { bpTabletOnly, bpMaxSM } from "@/lib/breakpoints";
 import reset from "@/lib/reset";
 
 import "prismjs/themes/prism-okaidia.css";
@@ -40,13 +40,19 @@ const GlobalStyle = css`
 const MainContainer = styled.main`
   display: grid;
   margin: 0 auto;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: 1fr 3fr 1fr;
   grid-template-areas: "left content right";
   z-index: 5;
   min-height: 50rem;
+  ${bpTabletOnly} {
+    grid-template-columns: 1fr;
+    grid-template-areas: "content";
+    padding: 0 0.5rem;
+  }
   ${bpMaxSM} {
     grid-template-columns: 1fr;
     grid-template-areas: "content";
+    padding: 0 0.5rem;
   }
 `;
 

@@ -158,6 +158,13 @@ module.exports = {
     "gatsby-plugin-catch-links",
     "gatsby-plugin-react-helmet",
     {
+      resolve: `gatsby-source-rss-feed`,
+      options: {
+        url: `https://egghead.io/instructors/matias-francisco-hernandez-arellano/feed?user_email=matiasfh%40gmail.com&user_token=195af077-8518-43ed-8be7-34f73437d2ff`,
+        name: `EggheadLessons`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/lib/typography`,
@@ -170,18 +177,6 @@ module.exports = {
         trackingId: process.env.GOOGLE_ANALYTICS_ID,
         head: false,
         defer: true,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-social-cards",
-      options: {
-        // ommit to skip
-        authorImage: "./assets/photo.png",
-        // image to use when no cover in frontmatter
-        // author to use when no auth in frontmatter
-        defaultAuthor: "Matías Hernández A.",
-        // card design
-        design: "default", // 'default' or 'card'
       },
     },
     `gatsby-plugin-advanced-sitemap`,

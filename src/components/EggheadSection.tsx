@@ -1,4 +1,5 @@
 import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import styled from "@emotion/styled";
 import { EggheadLesson } from "@pauliescanlon/gatsby-mdx-embed";
 import { bpMaxSM } from "@/lib/breakpoints";
@@ -45,29 +46,56 @@ const Title = styled.a`
   text-decoration: none;
 `;
 
+const getLesssonId = (url: string) => {
+  console.log({ url });
+  const lessonId = new URL(url).pathname.replace(/\/lessons\//, "");
+  return lessonId;
+};
+
+interface Node {
+  node: {
+    id: string;
+    title: string;
+    link: string;
+  };
+}
 const EggheadSection = () => {
+  const {
+    allFeedEggheadLessons: { edges },
+  } = useStaticQuery(graphql`
+    {
+      allFeedEggheadLessons(
+        sort: { order: DESC, fields: isoDate }
+        filter: { pubDate: { ne: "" } }
+        limit: 2
+      ) {
+        edges {
+          node {
+            id
+            title
+            link
+          }
+        }
+      }
+    }
+  `);
   return (
     <>
       <H1>Últimos Videos en Egghead</H1>
       <Container>
-        <Column>
-          <Title
-            href="https://egghead.io/lessons/egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme?af=4cexzz"
-            title="Personaliza tu perfil en Githuuub con el nuevo README"
-          >
-            Pesonaliza tu perfil en Github con el nuevo README
-          </Title>
-          <EggheadLesson lessonId="egghead-personaliza-tu-perfil-en-github-con-el-nuevo-perfil-readme" />
-        </Column>
-        <Column>
-          <Title
-            href="https://egghead.io/lessons/react-crear-un-componente-wizard-usando-usestate-react-hooks?af=4cexzz"
-            title="Crear un componente Wizard usando useState React hooks"
-          >
-            Crear un componente Wizard usando useState React hooks
-          </Title>
-          <EggheadLesson lessonId="react-crear-un-componente-wizard-usando-usestate-react-hooks" />
-        </Column>
+        {edges.map((node: Node) => {
+          return (
+            <Column key={node.node.id}>
+              <Title
+                href={`${node.node.link}?af=4cexzz`}
+                title={node.node.title}
+              >
+                {node.node.title}
+              </Title>
+              <EggheadLesson lessonId={getLesssonId(node.node.link)} />
+            </Column>
+          );
+        })}
       </Container>
     </>
   );
