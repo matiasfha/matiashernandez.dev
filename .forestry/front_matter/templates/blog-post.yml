@@ -64,6 +64,7 @@ pages:
 - content/posts/algunos-errores-comunes-al-utilizar-react-hooks.mdx
 - content/posts/arreglos-de-objetos-en-javascript-como-crear-y-actualizar-su-contenido.mdx
 - content/posts/measuring-your-react-app-performance.mdx
+- content/posts/overview-de-algunos-modernos-lenguajes-de-programacion.mdx
 - content/posts/que-son-los-hooks.mdx
 - content/posts/setting-up-a-monorepo-with-yarn-workspaces.mdx
 - content/posts/unit-integration-and-e2e-what-to-test.mdx
