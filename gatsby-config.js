@@ -15,10 +15,6 @@ const {
 const isNetlifyProduction = NETLIFY_ENV === "production";
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL;
 
-const eggheadTransformer = require("./embedder-transformers/egghead");
-const codesandboxTransformer = require("./embedder-transformers/codesandbox");
-const buzzsproutTransformer = require("./embedder-transformers/buzzsprout");
-
 module.exports = {
   pathPrefix: "/",
   siteMetadata: {
@@ -109,16 +105,6 @@ module.exports = {
               classPrefix: "language-",
               inlineCodeMarker: null,
               aliases: {},
-            },
-          },
-          {
-            resolve: `gatsby-remark-embedder`,
-            options: {
-              customTransformers: [
-                eggheadTransformer,
-                codesandboxTransformer,
-                buzzsproutTransformer,
-              ],
             },
           },
         ],

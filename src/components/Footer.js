@@ -172,6 +172,25 @@ const Footer = () => {
           <Twitter url={twitter} />
           <GitHub url={github} />
           <LinkedIn url={linkedin} />
+          <Link
+            to="https://dev.to/matiasfha"
+            css={css`
+              margin-left: 20px;
+              color: ${color};
+              :hover {
+                color: rgba(255, 255, 255, 1);
+              }
+            `}
+            aria-label="Visit my GitHub"
+            title="Visit my GitHub"
+          >
+            <img
+              src="https://d2fltix0v2e0sb.cloudfront.net/dev-badge.svg"
+              alt="Matías Hernández Arellano's DEV Profile"
+              height="30"
+              width="30"
+            />
+          </Link>
         </Social>
       </FooterContent>
     </Container>
