@@ -176,7 +176,7 @@ const Footer = () => {
             to="https://dev.to/matiasfha"
             css={css`
               margin-left: 20px;
-              color: ${color};
+              color: rgba(255, 255, 255, 0.7);
               :hover {
                 color: rgba(255, 255, 255, 1);
               }
