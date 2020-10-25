@@ -5,6 +5,7 @@
   "author": "Matias Hernandez A. <hello@matiashernandez.dev> (https://www.matiashernandez.dev)",
   "repository": "https://github.com/matiasfha/matiashernandez.dev",
   "dependencies": {
+    "@jlengstorf/get-share-image": "0.7.1",
     "@mdx-js/mdx": "^1.6.0",
     "@mdx-js/react": "^1.6.0",
     "@pauliescanlon/gatsby-mdx-embed": "0.0.23",

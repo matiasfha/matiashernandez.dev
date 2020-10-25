@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import { useStaticQuery, graphql } from "gatsby";
 import SchemaOrg from "./schema-org";
-import socialCard from "./socialCard";
+import getShareImage from "@jlengstorf/get-share-image";
 
 const Seo = ({ title, frontmatter, isBlogPost }) => {
   const { site } = useStaticQuery(graphql`
@@ -53,10 +53,20 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
     realTitle = `${title} | ${siteTitle}`;
   }
   const datePublished = isBlogPost ? frontmatter.date : null;
-  const ogImage = socialCard({
-    title: isBlogPost ? title : siteTitle,
-    description: metaDescription,
+
+  const ogImage = getShareImage({
+    title: title ? title : siteTitle,
+    tagline: title
+      ? frontmatter.keywords?.map((item) => `#${item}`).join(" ")
+      : siteTitle,
+    cloudName: "matiasfha",
+    imagePublicID: "social-card.jpg",
+    textColor: "F9F9F9",
+    font: "futura",
+    titleExtraConfig: "_line_spacing_-10",
+    taglineFontSize: 32,
   });
+
   return (
     <Helmet
       title={realTitle}
