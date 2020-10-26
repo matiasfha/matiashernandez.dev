@@ -70,7 +70,7 @@
     "prettier": "2.0.5",
     "react-markdown": "4.3.1",
     "typescript": "3.9.6",
-    "yup": "0.29.2"
+    "yup": "0.29.3"
   },
   "keywords": [
     "gatsby"
