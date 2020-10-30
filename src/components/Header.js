@@ -171,6 +171,7 @@ const NavLink = styled(HeaderLink)`
 const NAVIGATION = [
   { to: "/blog", label: "Blog" },
   { to: "https://braindump.matiashernandez.dev", label: "Notas" },
+  { to: "https://presentaciones.matiashernandez.dev", label: "Talks" },
   // { to: "/podcasts", label: "Podcasts" },
   { to: "/about", label: "About" },
 ];
