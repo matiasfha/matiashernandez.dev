@@ -50,7 +50,7 @@ const Seo = ({ title, frontmatter, isBlogPost }) => {
   }
   let realTitle = siteTitle;
   if (title) {
-    realTitle = `${title} | ${siteTitle}`;
+    realTitle = title;
   }
   const datePublished = isBlogPost ? frontmatter.date : null;
 
