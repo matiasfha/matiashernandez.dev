@@ -73,5 +73,6 @@ pages:
 - content/posts/que-es-typescript.mdx
 - content/posts/que-son-los-hooks.mdx
 - content/posts/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida.mdx
+- content/posts/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante.mdx
 - content/posts/setting-up-a-monorepo-with-yarn-workspaces.mdx
 - content/posts/unit-integration-and-e2e-what-to-test.mdx
