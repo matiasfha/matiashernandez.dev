@@ -43,27 +43,32 @@ Estas son parte esencial de Javascript y han estado presentes desde el inicio de
 
 Un ejemplo es el uso de `setTimeout`
 
-    const customSetTimeout = (callback) => {
+    
+```javascript
+const customSetTimeout = (callback) => {
         setTimeout(() => { //Esta tambien es un callback
             console.log('Set timeout terminado')
             callback(); //Ejecuta el callback cuando setTimeout termino
         }, 1000); //1 segundo
     }
+``` 
+
 
 ## Promises
 
 Una Promesa es una implementación un poco más robusta para resolver el problema de asincronicidad. En palabras generales, una promesa es “algo que pasará en el futuro”, basicamente es una función que recibe una instrucción de hacer alguna tarea y te responde “Aún no tengo los dato, pero dame tu contacto y cuano tenga los dato de aviso”. ¿Cómo se ve en código?
-
+```javascript
     fetch('https://someapi.com').then(data => {
         doSomethingWithData(data)
     }).catch(e => {
         console.error(e)
     })
+```
 
 Para “capturar” esta promesa se utiliza `then` para definir que hacer cuando la promesa retorna “se resuelve” y `catch` para definir que hacer cuando la promesa falla.
 
 Actualmente Javascript ofrece algo de `syntaxis sugar` utilizando `async/await`
-
+```javascript
     const getData = async () => {
         try {
             const data = await fetch('https://someapi.com')
@@ -72,38 +77,41 @@ Actualmente Javascript ofrece algo de `syntaxis sugar` utilizando `async/await`
             console.error(e)
         }
     }
-
+```
 ## Módulos Nativos
 
 React Native ofrece  algunas estructuras de datos que permiten ofrecen esta experiencia en los métodos expuestos. Existen dos estructuras utilizadas como argumentos `Callback` y `Promise`.
 
 ### Callbacks Nativas
 
-`Callback` es utilizado para proveer el resultado del llamado de la funcion hacia Javascript.
-
+`Callback` es utilizado para proveer el resultado del llamado de la función hacia Javascript.
+En el caso de iOS utilizando Objective-C
+```objectivec
     RTC_EXPORT_METHOD(nativeFetchApi:(RCTResponseSenderBlock)callback)
     {
       NSArray *array = AwesomeSDK.fetch();
       callback(@[NSNull null], array);
     }
-
+```
 O en su version Java
-
+```java
     @ReactMethod
     public void nativeFetchApi(Callback callback) {
         WritableArray array = AwesomeSDK.fetch() 
         callback.invoke(array)
     }
-
-Y despues simplemente se utiliza en nuestro código Javacript
-
+```
+Y después simplemente se utiliza en nuestro código Javacript
+```javascript
     const fetchCallback = (data) => {
         doSomethingCool(data)
     }
     NativeModules.MyAwesomeModule.nativeFetchApi(fetchCallback);
-
+````
 El módulo nativo debe invocar el callback sólo una vez. También es posible almacenar el callback y llamarlo en otro punto del código. De hecho esto es lo que tuve que realizar ya que el SDK utilizado tiene sus propios `observers`.
 
+Java
+```java
     private Callback privateCallback = null;
     @ReactMethod
     public void nativeSdkSingin(Callback callback) {
@@ -118,11 +126,13 @@ El módulo nativo debe invocar el callback sólo una vez. También es posible al
         }38k
         this.privateCallback = null;
     }
-
+```
 ### Promises Nativas
 
 React Native también provee de una estructura de datos que puede definir una Promesa, que permite simplificar un poco el código asíncrono, sobre todo si se utiliza `async/await`. Para definir el uso de una promesa, es decir, determinar que una función retornará una promesa debes utilizar como último parámetro de la función este argumento.
 
+En el caso de iOS utilizando Objective-C
+```objectivec
     RTC_EXPORT_METHOD(nativeFetchApi,
                      nativeFetchApiWithResolver:(RCTPromiseResolveBlock)resolve
                      rejecter:(RCTPromiseRejectBlock)reject)
@@ -135,9 +145,9 @@ React Native también provee de una estructura de datos que puede definir una Pr
             reject(@"no_data", @"No hay datos", error)
         }
     }
-
+```
 O en su version Java
-
+```java
     @ReactMethod
     public void nativeFetchApi(Promise promise) {
         try {
@@ -148,9 +158,9 @@ O en su version Java
         }
     
     }
-
+```
 Y despues simplemente se utiliza en nuestro código Javacript
-
+```javascript
     const fetchNativeData = async () => {
         try {
             const data = await NativeModules.MyAwesomeModule.nativeFetchApi();
@@ -159,9 +169,11 @@ Y despues simplemente se utiliza en nuestro código Javacript
             console.error(e)
         }
     }
-
+```
 Y de igual forma que en el ejemplo de uso de callbacks, también es posible almacenar la promesa y llamarla en otro punto del código.
 
+Java
+```java
     private Promise privatePromise = null;
     @ReactMethod
     public void nativeSdkSingin(Promise promise) {
@@ -176,7 +188,9 @@ Y de igual forma que en el ejemplo de uso de callbacks, también es posible alma
         }38k
         this.privatePromise = null;
     }
-
+```
 ## Conclusión
 
 Al desarrollar aplicaciones moviles utilizando React Native, ciertos casos de usos requieren el desarrollo de módulos nativos, y uno de los objetivos de estos módulos es ofrecer una experiencia de uso (al desarrollador) lo más cercana posible a una librería escrita en javascript, para esto React Native ofrece estructuras de datos que permiten desarrollar métodos nativos que soportan Callbacks y Promesas.
+
+%%[converkit]
