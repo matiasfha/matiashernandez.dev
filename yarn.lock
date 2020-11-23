@@ -14131,10 +14131,10 @@ rc@^1.2.7, rc@^1.2.8:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-calendly@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-calendly/-/react-calendly-1.0.1.tgz#b09e34b27008eb1ae1b8028d50bb2063a12dca19"
-  integrity sha512-oKJierp80bVd44Ca6gj/O22wIcGk6T6GkX0H5LhiS9kNmasTPDL5wJOJ1RNgVSmh3/bojqOklhUbBlPQKoYALQ==
+react-calendly@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-calendly/-/react-calendly-1.2.0.tgz#c6545cf38134b2b19b079c2cd937183736d9fc85"
+  integrity sha512-iyh/mLky5ZRlFpO2MTyZmsKxuZKNwP9ZzQS7iBR01n3zTCZxja1lKO4cI2UxJbKwUYq56XbYZo7szgQu7awJrQ==
 
 react-circular-progressbar@^2.0.0:
   version "2.0.3"
