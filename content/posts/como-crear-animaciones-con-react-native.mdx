@@ -24,6 +24,9 @@ React Native ofrece una API para trabajar con animaciones directamente utilizand
 
 En este post revisaremos como utilizar esta caracterísitca para crear tus propias animaciones!.
 
+TLDR:
+<EggheadLesson lessonId="react-native-crear-animacion-con-react-native-y-la-api-animated" />
+
 # La API Animated
 
 React Native ofrece dos API complementarias: `Animated` para un control granular de valores específicos y `LayoutAnimation` para efectos animados globales en transacciones del layout.
@@ -36,7 +39,6 @@ Los componentes animados por defecto son: `View`, `Text`, `Image`, `ScrollView`,
 Así mismo, `Animated` ofrece métodos para controlar los valores que estás animando como `Animated.timing` y `Animated.spring` y otros que permiten componer animaciones como: `Animated.parallel`, `Animated.sequence`, `Animated.delay` y `Animated.loop`.
 
 Primero vamos a revisar algunos de estos métodos:
-
 
 ## Animated.timing y Animated.spring
 
@@ -54,7 +56,7 @@ Lo primero que podemos ver dentro de la definicion de `App` es el uso de `React.
 
 ```javascript
 const translateAnimationTiming = React.useRef(new Animated.Value(0)).current
-``` 
+```
 
 Aquí utilizamos `useRef` para mantener una referencia a un valor sin necesidad de emitir un cambio de estado provocando un re-renderizado del componente, dentro del `ref` creamos un valor para animar utilizando `new Animated.Value(0)` iniciando que el valor inicial será 0, luego definimos la función que iniciará la animación, en este caso es un manejador para el evento click de los botones
 
@@ -70,7 +72,7 @@ Aquí utilizamos `useRef` para mantener una referencia a un valor sin necesidad 
 
 Esta función declara y ejecuta la animación `timing`. El primer argumento es el valor que se animará y luego recibe un objeto de configuración `toValue` que declara que se animará hasta obtener el valor 250 en un tiempo `duration: 600` (milisegundos). y definimos que se usará el driver nativo. Este último argumento es requerido por React Native como `true` or `false`.
 
-Sólo algunos valores pueden ser animados utilizando el driver nativo, tal como se describe en [este post de la documentación oficial](<https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated>), los valores animables por el driver nativo son todos aquellos &ldquo;no relacionados con el layout&rdquo;, es decir no puedes animar nativamente (pero si al utilizar `useNativeDriver: false`) propiedades de flexbox, tamaños (width, height) o posiciones.
+Sólo algunos valores pueden ser animados utilizando el driver nativo, tal como se describe en [este post de la documentación oficial](https://reactnative.dev/blog/2017/02/14/using-native-driver-for-animated), los valores animables por el driver nativo son todos aquellos “no relacionados con el layout”, es decir no puedes animar nativamente (pero si al utilizar `useNativeDriver: false`) propiedades de flexbox, tamaños (width, height) o posiciones.
 
 En este ejemplo también hay otra función que ejecuta la animación utilizando `spring`
 
@@ -81,12 +83,12 @@ En este ejemplo también hay otra función que ejecuta la animación utilizando 
           useNativeDriver: true,
         }).start()
     }
-````
-El método spring solo recibe el valor al cual se quiere animar (sin tiempo). 
+```
+
+El método spring solo recibe el valor al cual se quiere animar (sin tiempo).
 Puedes ver la diferencia entre ambas animaciones en el ejemplo de Snack.
 
 Por cierto, en ambos casos se hizo una llamada al método `start()` para iniciar la animación. `start()` puede recibir un argumento. Un callback que es ejecutado cuando la animación terminó. Si la animación termino de forma correcta el callback será invocado con el argumento `{finished:true}`, en caso contrario, si la animación, termino de forma errónea, o no se pudo completar (por ejemplo, por alguna interrupción al re-renderizar), el callback recibirá el parámetro `{finished:false}`
-
 
 ## Componentes animados
 
@@ -108,11 +110,12 @@ La animación es en el fondo, una modificación a alguna propiedad del estilo de
         transform: [{ translateX: translateAnimationTiming}]
     }
 ```
+
 Este style, define la propiedad transform para indicar que se modificará la posición en `X` del elemento.
 
 ## Easing
 
-Easing functions o funciones de aceleración especifican la forma o monto del cambio de un parámetro sobre durante el tiempo. 
+Easing functions o funciones de aceleración especifican la forma o monto del cambio de un parámetro sobre durante el tiempo.
 Los objetos, en la vida real no inician o detienen su movimiento de forma abrupta, y casi nunca se mueven a una velocidad constante.
 React Native ofrece varias funciones de aceleración para aplicar en nuestras animaciones, para su uso simplemente debes importar el objeto `Easing`, como en el siguiente ejemplo
 
@@ -142,7 +145,7 @@ Vamos un ejemplo y animemos dos propiedades diferentes de dos componentes.
 
 [https://snack.expo.io/@matiasfh/rn-animation-interpolation-example](https://snack.expo.io/@matiasfh/rn-animation-interpolation-example)
 
-En este ejemplo tenemos dos componentes animados. Un circulo rojo que se mueve hacia la derecha y un circulo azul que &ldquo;desaparece&rdquo; cambiando su opacidad, pero solo tenemos la definición de un valor de animación
+En este ejemplo tenemos dos componentes animados. Un circulo rojo que se mueve hacia la derecha y un circulo azul que “desaparece” cambiando su opacidad, pero solo tenemos la definición de un valor de animación
 
 ```javascript
     const animatedValue = react.useRef(new Animated.Value(0)).current
