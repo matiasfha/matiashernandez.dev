@@ -59,6 +59,10 @@ fields:
       path: 
   label: Tag
   description: Tag for the garden
+- name: favorite
+  type: boolean
+  label: favorite
+  description: Mark as favorite
 pages:
 - content/posts/4-formas-de-eliminar-elementos-duplicados-en-un-arreglo-con-javascript.mdx
 - content/posts/agregar-modulos-nativos-a-una-aplicacion-react-native.mdx
