@@ -82,5 +82,6 @@ pages:
 - content/posts/react-native-promesas-y-callbacks-en-modulos-nativos.mdx
 - content/posts/react-useeffect-hook-comparado-con-los-estados-del-ciclo-de-vida.mdx
 - content/posts/react-useeffect-por-que-el-arreglo-de-dependencias-es-importante.mdx
+- content/posts/revision-de-este-2020.mdx
 - content/posts/setting-up-a-monorepo-with-yarn-workspaces.mdx
 - content/posts/unit-integration-and-e2e-what-to-test.mdx
