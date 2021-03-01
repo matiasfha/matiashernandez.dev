@@ -31,7 +31,7 @@
     "gatsby-source-buzzsprout-api": "1.0.1",
     "gatsby-source-filesystem": "^2.3.23",
     "gatsby-source-rss-feed": "1.2.0",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.23.0",
     "prop-types": "15.7.2",
     "react": "^16.13.1",
     "react-calendly": "1.0.1",
